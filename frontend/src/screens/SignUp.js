@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from "react"; 
 import Axios from 'axios';
-import {BrowserRouter, Route} from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import {Link } from "react-router-dom";
 import LogIn from './LogIn';
+import './SignUpStyle.css';
+//import SignUp from './SignUp';
 
 function SignUp(){
     
@@ -19,47 +21,66 @@ function SignUp(){
         alert("SignUp Successfull");
     })
     };
+
+    let history = useHistory();
+    const hisFun = () => 
+    {
+        history.push('/logIn');
+        
+    };
       return(
-        <BrowserRouter>
+        
         <div className ="form">
-            
+            <div className="form-group">
             <label>user name</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setUsername(e.target.value)
             }}/>
+            </div>
 
+            <div className="form-group">
             <label>password</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setPassword(e.target.value)
             }}/>
+            </div>
 
+            <div className="form-group">
             <label>phone</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setPhone(e.target.value)
             }}/>
-
+            </div>
+            <div className="form-group">
             <label>address</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setAddress(e.target.value)
             }}/>
+            </div>
 
+            <div className="form-group">
             <label>d.o.b</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setDob(e.target.value)
             }}/>
+            </div>
 
+            <div className="form-group">
             <label>gender</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setGender(e.target.value)
             }}/>
+            </div>
             
-            <Link to="/logIn">
-            <button onClick={submit}>Sign Up</button>
-            </Link>
-            <Route exact path="/logIn" component={LogIn}/>
+            
+            <button className="sbtn" onClick={() =>{
+                hisFun();
+                submit()
+            }
+            } >Sign Up</button>
             
         </div>
-        </BrowserRouter>
+        
       );
 }
 export default SignUp;

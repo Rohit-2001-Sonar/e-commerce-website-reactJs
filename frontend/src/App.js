@@ -18,10 +18,7 @@ function App() {
           <img  src={logo} alt="" />
         </div>
         </Link>
-        <div >
-          <input className="header_search" type="text"/>
-          <button className="search_btn" >Search</button>
-        </div>
+        
         <div className="header_options">
           <Link to="/signUp">
           <div className="header_optionSignIn">
@@ -43,10 +40,10 @@ function App() {
       <main className="main">
       <div className="home">
        
-        <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/products" component={ProductScreen} />
-        <Route exact path="/signUp" component={SignUp}/>
-        <Route exact path="/logIn" component={LogIn}/>
+        <Route  path="/" exact component={LogIn}/>
+        <Route  path="/products" exact component={ProductScreen}/>
+        <Route  path="/signUp" exact component={SignUp}/>
+        <Route  path="/logIn" exact component={LogIn}/>
       </div>
       </main>
   
