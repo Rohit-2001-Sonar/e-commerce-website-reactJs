@@ -7,6 +7,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from './screens/ProductScreen';
 import SignUp from './screens/SignUp';
 import LogIn from './screens/LogIn';
+import CreatePost from './screens/CreatePost';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Link>
         
         <div className="header_options">
+        <div className="header_optionSignIn">
+            <span>Home</span>
+          </div>
           <Link to="/signUp">
           <div className="header_optionSignIn">
             <span>SignUp</span>
@@ -32,7 +36,7 @@ function App() {
           </Link>
           <Link to="/products">
           <div className="header_optionCart">
-            <span>Home</span>
+            <span>Your Products</span>
           </div>
           </Link>
         </div>
@@ -44,6 +48,7 @@ function App() {
         <Route  path="/products" exact component={ProductScreen}/>
         <Route  path="/signUp" exact component={SignUp}/>
         <Route  path="/logIn" exact component={LogIn}/>
+        <Route  path="/createPost" exact component={CreatePost}/>
       </div>
       </main>
   

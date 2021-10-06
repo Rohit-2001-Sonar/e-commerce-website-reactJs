@@ -3,17 +3,19 @@ import './LogInStyle.css';
 //import React, {useState, useEffect} from "react"; 
 import Axios from 'axios';
 import { useHistory} from "react-router-dom";
+let status = 0;
 
 function LogIn (){
     const [userName, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    let status = 0;
+    //let status = 0;
 
     const submit = () =>{
         Axios.post('http://localhost:3001/api/logIn', {userName : userName, password: password}).then((responce) => {
-        status = responce.data[0].count;
-        if(status==1){
-            alert("welcome "+userName);
+        
+        //console.log(responce);
+        if(responce.data.length != 0){
+            alert("Welcome "+userName);
             hisHome();
         }
         else{
@@ -21,7 +23,7 @@ function LogIn (){
         }
     })
     };
-
+    
     let history = useHistory();
     const hisHome = () => 
     {
@@ -48,13 +50,7 @@ function LogIn (){
                 setPassword(e.target.value)
             }} required />
                     </div>
-                    <div className="form-group">
-
-<input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
-    
-}}/>
-<label for="male">Seller</label>
-</div>
+                    
                 </div>
             </div>
             <div className="btn1">

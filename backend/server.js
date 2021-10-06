@@ -19,6 +19,8 @@ app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
+let status;
+
 app.post('/create',(req, res) =>{
      
 });
@@ -58,12 +60,18 @@ app.post('/api/signUp',(req,res) =>{
         
     });
 });
+
+//check status
+app.get('/api/status',(req, res) =>{
+    res.send({status});
+});
+
 //Log In
 app.post('/api/logIn', (req, res) => {
     const userName = req.body.userName;
     const password = req.body.password;
     
-    const sqlInsert = "SELECT count(*) as count FROM ecommerce.user_accounts where user_name=? and password=?;";
+    const sqlInsert = "SELECT * FROM ecommerce.user_accounts where user_name=? and password=?;";
     db.query(
         sqlInsert,[userName,password], (err, result) => {
             if(err){
@@ -72,10 +80,10 @@ app.post('/api/logIn', (req, res) => {
             else{
                 if(result){
                     res.send(result);
-                    
+                    status = 1;
                 }
                 else{
-                    res.send(false);
+                    res.send(result);
                 }
             }
         }
