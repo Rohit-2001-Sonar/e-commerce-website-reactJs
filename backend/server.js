@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-let status;
+let status = 0, userAcc = [];
 
 app.post('/create',(req, res) =>{
      
@@ -61,9 +61,14 @@ app.post('/api/signUp',(req,res) =>{
     });
 });
 
+//Reset status
+app.get('/api/resetStatus', (req,res) =>{
+    status = 0;
+});
+
 //check status
 app.get('/api/status',(req, res) =>{
-    res.send({status});
+    res.send([{status},{userAcc}]);
 });
 
 //Log In
@@ -80,6 +85,7 @@ app.post('/api/logIn', (req, res) => {
             else{
                 if(result){
                     res.send(result);
+                    userAcc = result;
                     status = 1;
                 }
                 else{

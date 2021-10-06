@@ -8,8 +8,14 @@ import ProductScreen from './screens/ProductScreen';
 import SignUp from './screens/SignUp';
 import LogIn from './screens/LogIn';
 import CreatePost from './screens/CreatePost';
+import Axios from 'axios';
 
 function App() {
+  const resetStatus = () =>{
+    Axios.get('http://localhost:3001/api/resetStatus').then((responce) => {
+        
+    })
+  };
   return (
     <BrowserRouter>
     <div className="App">
@@ -21,9 +27,7 @@ function App() {
         </Link>
         
         <div className="header_options">
-        <div className="header_optionSignIn">
-            <span>Home</span>
-          </div>
+        
           <Link to="/signUp">
           <div className="header_optionSignIn">
             <span>SignUp</span>
@@ -39,6 +43,13 @@ function App() {
             <span>Your Products</span>
           </div>
           </Link>
+          <div className="header_optionCart">
+          <Link to="/logIn">
+            <button onClick={() =>{
+              resetStatus();
+            }}>LogOut</button>
+            </Link>
+          </div>
         </div>
       </div>
       <main className="main">

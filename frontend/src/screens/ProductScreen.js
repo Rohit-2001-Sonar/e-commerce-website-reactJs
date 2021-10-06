@@ -9,8 +9,9 @@ import LogIn from './LogIn';
     let status;
      const submit = () =>{
         Axios.get('http://localhost:3001/api/status').then((responce) => {
-        status = responce.data.status;
-        console.log(status);
+        status = responce.data[0].status;
+        //console.log(status);
+        //console.log(responce.data[1]);
         if(status!=1){
             hisLogin();
         }
@@ -20,6 +21,10 @@ import LogIn from './LogIn';
 
     const hisLogin = () =>{
         history.push('/logIn');
+    };
+
+    const hisCreatePost = () =>{
+        history.push('/createPost');
     };
 
     const [products, setProduct] = useState([]);
@@ -35,7 +40,7 @@ import LogIn from './LogIn';
      <div>
                 <div className="btn">
                     <button type="button" className="cbtn" onClick={() =>{
-                        hisLogin();
+                        hisCreatePost();
                     }}>
                         Create New Post
                     </button>
