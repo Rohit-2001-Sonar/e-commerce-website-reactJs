@@ -53,48 +53,48 @@ function SignUp(){
       return(
         
         <div className ="form">
-            <div className="form-group">
-            <label>user name</label>
+            <div className="form-group1">
+            <label>Username</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setUsername(e.target.value)
             }} required/>
             </div>
 
-            <div className="form-group">
-            <label>password</label>
+            <div className="form-group2">
+            <label>Password</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setPassword(e.target.value)
             }} required/>
             </div>
 
-            <div className="form-group">
-            <label>phone</label>
+            <div className="form-group3">
+            <label>Phone</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setPhone(e.target.value)
             }} required/>
             </div>
-            <div className="form-group">
-            <label>address</label>
+            <div className="form-group4">
+            <label>Address</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setAddress(e.target.value)
             }} required/>
             </div>
 
-            <div className="form-group">
-            <label>d.o.b</label>
+            <div className="form-group5">
+            <label>D.O.B</label>
             <input type="text" name="user_name" onChange={(e)=>{
                 setDob(e.target.value)
             }} required/>
             </div>
 
-            <div className="form-group">
-
+            <div className="form-group6">
+                
             <input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
                 setGender("male")
             }}/>
             <label for="male">Male</label>
             </div>
-            <div className="form-group">
+            <div className="form-group7">
             <input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
                 setGender("female")
             }}/>

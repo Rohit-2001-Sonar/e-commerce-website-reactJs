@@ -36,24 +36,19 @@ function LogIn (){
         <div className="base-container">
             <div className="content">
                 <div className="form">
-                    <div className="form-group">
+                    <div className="form-group1">
                         <label htmlform="username" >Username </label>
                         <input type="text" name="username" onChange={(e)=>{
                 setUsername(e.target.value)
             }} required />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlform="password" >Password </label>
                         <input type="password" name="password" onChange={(e)=>{
                 setPassword(e.target.value)
             }} required />
                     </div>
                     <div className="form-group">
-
-<input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
-    
-}}/>
-<label for="male">Seller</label>
 </div>
                 </div>
             </div>
@@ -73,14 +68,11 @@ function LogIn (){
                 </button>
             </div>
             <div className="signup">
-                <div className="tt">
-                    New User?    
-                </div> 
                 <div className="btn2">
                     <button type="button" className="sbtn" onClick={() =>{
                         hisSign();
                     }}>
-                        SIGN UP
+                        Create New Account
                     </button>
                 </div>
             </div>
