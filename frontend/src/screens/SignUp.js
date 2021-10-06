@@ -88,10 +88,18 @@ function SignUp(){
             </div>
 
             <div className="form-group">
-            <label>gender</label>
-            <input type="text" name="user_name" onChange={(e)=>{
-                setGender(e.target.value)
-            }} required/>
+
+            <input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
+                setGender("male")
+            }}/>
+            <label for="male">Male</label>
+            </div>
+            <div className="form-group">
+            <input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
+                setGender("female")
+            }}/>
+            <label for="male">Female</label>
+        
             </div>
             
             

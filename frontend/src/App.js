@@ -32,7 +32,7 @@ function App() {
           </Link>
           <Link to="/products">
           <div className="header_optionCart">
-            <span>Seller</span>
+            <span>Home</span>
           </div>
           </Link>
         </div>

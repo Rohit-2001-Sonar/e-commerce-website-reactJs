@@ -48,6 +48,13 @@ function LogIn (){
                 setPassword(e.target.value)
             }} required />
                     </div>
+                    <div className="form-group">
+
+<input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
+    
+}}/>
+<label for="male">Seller</label>
+</div>
                 </div>
             </div>
             <div className="btn1">
