@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import himg from './ecomh.png';
 import './App.css';
 //import data from './data.js';
 import {BrowserRouter, Route} from "react-router-dom";
@@ -16,7 +16,7 @@ function App() {
       <div className="header">
         <Link to="/">
         <div className="logo_img">
-          <img  src={logo} alt="" />
+          <img  src={himg} width="45" height="45"  alt="" />
         </div>
         </Link>
         
