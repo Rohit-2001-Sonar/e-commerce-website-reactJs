@@ -9,8 +9,9 @@ function CreatePost(){
     const [quantity, setQuantity] = useState('');
     const [categoryNo, setCategoryno] = useState('');
     const [accountNo, setAccountno] = useState('');
+    let status ;
 
-    let status;
+    
      const checkStatus = () =>{
         Axios.get('http://localhost:3001/api/status').then((responce) => {
         status = responce.data[0].status;
@@ -21,6 +22,7 @@ function CreatePost(){
             hisLogin();
         }
     })
+    return;
     };
     checkStatus();
 
@@ -29,20 +31,26 @@ function CreatePost(){
         history.push('/logIn');
     };
 
-    const incProdNo = () =>{
+    /*const incProdNo = () =>{
         Axios.get('http://localhost:3001/api/prod_no').then((responce) => {
-            let num = (responce.data[0].count)+1;
-            setProductno(num);
+            //let num = (responce.data[0].count);
+           
             //productNo = productNo +1;
-            console.log(responce.data[0].count+" "+num);
+            //console.log(responce.data[0].count+" "+num);
+            setProductno(responce.data[0].count);
+            //setProductno(productNo+1)
+            console.log(productNo);
         });
         //console.log(accNo);
         //setAccNo(array[0].count);
-    };
+    };*/
 
     const submit = () =>{
-        Axios.post('http://localhost:3001/api/addProd', {productNo : productNo, productName : productName, productPrice : productPrice, quantity : quantity, categoryNo : categoryNo, accountNo : accountNo}).then(() => {
-        alert("SignUp Successfull");
+        Axios.post('http://localhost:3001/api/addProd', {productName : productName, productPrice : productPrice, quantity : quantity, categoryNo : categoryNo, accountNo : accountNo}).then((responce) => {
+        if(responce.data){alert(responce.data.sqlMessage);}
+        else{
+            alert("Product Added successfully");
+        }
     })
     };
     //console.log(categoryNo);
@@ -92,7 +100,7 @@ function CreatePost(){
                     
                     <button onClick={() =>{
                         submit();
-                        incProdNo();
+                        //incProdNo();
                     }}>Create Post</button>
 
                 </div>

@@ -10,6 +10,7 @@ import LogIn from './screens/LogIn';
 import CreatePost from './screens/CreatePost';
 import Axios from 'axios';
 
+
 function App() {
   const resetStatus = () =>{
     Axios.get('http://localhost:3001/api/resetStatus').then((responce) => {
@@ -55,7 +56,7 @@ function App() {
       <main className="main">
       <div className="home">
        
-        <Route  path="/" exact component={LogIn}/>
+        <Route  path="/" exact component={HomeScreen}/>
         <Route  path="/products" exact component={ProductScreen}/>
         <Route  path="/signUp" exact component={SignUp}/>
         <Route  path="/logIn" exact component={LogIn}/>

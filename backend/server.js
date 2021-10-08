@@ -37,32 +37,44 @@ app.get('/api/acc_no',(req, res) =>{
     });
 });
 
-//getting product number
-app.get('/api/prod_no',(req, res) =>{
-    db.query("SELECT COUNT(*) AS count FROM ecommerce.products;", (err, result) =>{
+
+//Get All Products
+app.get('/api/getAllProd', (req, res)=>{
+    db.query("SELECT * FROM ecommerce.products;", (err, result) =>{
         res.send(result);
+    });
+})
+
+//Get Products
+app.post('/api/getProd', (req,res) =>{
+    const accountNo = req.body.accountNo;
+    db.query("SELECT * FROM ecommerce.products where account_no =?;",[accountNo], (err,result) =>{
+        res.send(result);
+        console.log(accountNo);
     });
 });
 
 //add Product 
 app.post('/api/addProd',(req,res) =>{
-    const productNo = req.body.productNo;
+    
     const productName = req.body.productName;
     const productPrice = req.body.productPrice;
     const quantity = req.body.quantity;
     const categoryNo = req.body.categoryNo;
     const accountNo = req.body.accountNo;
-    console.log(accountNo);
+    //console.log(accountNo);
     
-    const sqlInsert = "INSERT INTO products (product_no, product_name, product_price, quantity, category_no, account_no) VALUES (?,?,?,?,?,?)";
+    const sqlInsert = "INSERT INTO products (product_name, product_price, quantity, category_no, account_no) VALUES (?,?,?,?,?)";
 
-    db.query(sqlInsert, [productNo, productName, productPrice, quantity, categoryNo, accountNo], (err, result) =>{
+    db.query(sqlInsert, [productName, productPrice, quantity, categoryNo, accountNo], (err, result) =>{
     
         if(err){
             console.log(err);
+            res.send(err);
         }
         else{
-            console.log(result);
+            //console.log(err);
+            res.send(err);
         }
         
     });
@@ -70,7 +82,7 @@ app.post('/api/addProd',(req,res) =>{
 
 //registration or Sign Up
 app.post('/api/signUp',(req,res) =>{
-    const accNo = req.body.accNo;
+    
     const userName = req.body.userName;
     const password = req.body.password;
     const phone = req.body.phone;
@@ -78,15 +90,17 @@ app.post('/api/signUp',(req,res) =>{
     const dob = req.body.dob;
     const gender = req.body.gender;
     
-    const sqlInsert = "INSERT INTO user_accounts VALUES (?,?,?,?,?,?,?)";
+    const sqlInsert = "INSERT INTO user_accounts VALUES (?,?,?,?,?,?)";
 
-    db.query(sqlInsert, [accNo, userName, password, phone, address, dob, gender], (err, result) =>{
+    db.query(sqlInsert, [userName, password, phone, address, dob, gender], (err, result) =>{
     
         if(err){
             console.log(err);
+            res.send(err);
         }
         else{
-            console.log(result);
+            console.log(err);
+            res.send(err);
         }
         
     });
@@ -95,7 +109,6 @@ app.post('/api/signUp',(req,res) =>{
 //Reset status
 app.get('/api/resetStatus', (req,res) =>{
     status = 0;
-    userAcc = [];
 });
 
 //check status

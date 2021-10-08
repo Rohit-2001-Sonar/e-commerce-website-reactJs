@@ -9,7 +9,7 @@ import './SignUpStyle.css';
 function SignUp(){
     
     //const [array, setArray] = useState([]);
-    const [accNo, setAccNo] = useState('');
+    
     const [userName, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
@@ -17,7 +17,7 @@ function SignUp(){
     const [dob, setDob] = useState('');
     const [gender, setGender] = useState('');
 
-    useEffect(() =>{
+    /*useEffect(() =>{
         Axios.get('http://localhost:3001/api/acc_no').then((responce) => {
             
             setAccNo(responce.data[0].count);
@@ -27,7 +27,7 @@ function SignUp(){
         //setAccNo(array[0].count);
     }, []);
 
-    /*const acc_no = () =>{ [0].count
+    const acc_no = () =>{ [0].count
         Axios.get('http://localhost:3001/api/acc_no').then((responce) => {
         //alert(responce.data);
         setArray(responce.data);
@@ -38,9 +38,17 @@ function SignUp(){
     //acc_no();
 
     const submit = () =>{
-        Axios.post('http://localhost:3001/api/signUp', {accNo: accNo+1, userName : userName, password: password, phone: phone, address: address, dob: dob, 
-    gender: gender}).then(() => {
-        alert("SignUp Successfull");
+        Axios.post('http://localhost:3001/api/signUp', {userName : userName, password: password, phone: phone, address: address, dob: dob, 
+    gender: gender}).then((responce) => {
+        //alert("SignUp Successfull");
+        console.log(responce);
+        
+        if(responce == null){
+            hisFun();
+        }
+        else{
+            alert(responce.data.sqlMessage);
+        }
     })
     };
 
@@ -104,7 +112,7 @@ function SignUp(){
             
             
             <button type="submit" className="sbtn" onClick={() =>{
-                hisFun();
+                //hisFun();
                 //acc_no();
                 submit()
             }

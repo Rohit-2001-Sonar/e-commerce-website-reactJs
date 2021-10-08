@@ -3,11 +3,12 @@ import './LogInStyle.css';
 //import React, {useState, useEffect} from "react"; 
 import Axios from 'axios';
 import { useHistory} from "react-router-dom";
-let status = 0;
+
 
 function LogIn (){
     const [userName, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    
     //let status = 0;
 
     const submit = () =>{
@@ -27,7 +28,7 @@ function LogIn (){
     let history = useHistory();
     const hisHome = () => 
     {
-        history.push('/HomeScreen');
+        history.push('/');
         
     };
     const hisSign = () =>{
