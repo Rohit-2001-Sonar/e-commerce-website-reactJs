@@ -41,7 +41,7 @@ function App() {
           </Link>
           <Link to="/products">
           <div className="header_optionCart">
-            <span>Your Products</span>
+            <span>Profile</span>
           </div>
           </Link>
           <div className="header_optionCart">

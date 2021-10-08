@@ -6,6 +6,7 @@ import './ProductScreenStyle.css';
 
  function ProductScreen(props){
      const history = useHistory();
+     const [userAccount, setUseraccount] = useState([]);
      const [accountNo, setAccountno] = useState('');
      let status =0;
      const submit = () =>{
@@ -14,6 +15,7 @@ import './ProductScreenStyle.css';
         console.log(status);
         //console.log(responce.data[1]);
         //setAccountno(responce.data[1].userAcc[0].account_no);
+        setUseraccount(responce.data[1].userAcc[0]);
         if(status!=1){
             hisLogin();
         }
@@ -46,6 +48,20 @@ import './ProductScreenStyle.css';
 
      return (
      <div>
+         <div className="sideBar">
+             <div className="userDetails">
+                 <span>{userAccount.account_no}</span>
+                 <span>{userAccount.account_name}</span>
+                 <span>{userAccount.phone}</span>
+                 <span>{userAccount.address}</span>
+                 <span>{userAccount.dob}</span>
+                 <span>{userAccount.gender}</span>
+                 <button>Your Products</button>
+                 <button>Your Orders</button>
+                 <button>Wish List</button>
+                 <button>Items Sold</button>
+             </div>
+         </div>
          
                 <div className="btn">
                     <button type="button" className="cbtn" onClick={() =>{
@@ -66,7 +82,9 @@ import './ProductScreenStyle.css';
              <div className="product_title">{product.product_name}</div>
              <div className="product_price">${product.product_price}</div>
              <div className="product_rating">{product.rating}</div>
+             <button>+</button>
              <div className="product_quantity">Qty: {product.quantity}</div>
+             <button>-</button>
            
          </div>
         )
