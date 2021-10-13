@@ -9,3 +9,100 @@
     background-color: rgb(240, 204, 151);
     margin-bottom: 5px;
 }
+
+.product_list{
+    display: flex;
+    flex-direction: column;
+    margin-left: 260px;
+}
+
+.product_list_home{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.product{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    box-shadow: 0 0 5px grey;
+}
+
+.productDetails{
+    width: 50px;
+}
+
+.bigContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.showCase{
+    
+    flex-grow: 2;
+}
+
+.qtyDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sideBar{
+    
+   display: flex;
+   flex-direction: column;
+   position: fixed;
+   height: 100%;
+   width: 250px;
+   left: 0;
+   background-color:rgb(63, 61, 59);
+   
+}
+
+.sideBar ul{
+    padding-top: 25px;
+    
+    list-style: none;
+    text-decoration: none;
+    background-color:rgb(63, 61, 59);
+    margin: top 20px;
+    padding: 0;
+}
+.sideBar ul a{
+    text-align: left;
+    font-size: 20px;
+    display: block;
+    height:100%;
+    width:100%;
+    box-sizing: border-box;
+    line-height: 50px;
+    padding-left: 35px;
+    border-top:1px solid grey ;
+    border-bottom: 1px solid rgb(0, 0, 0);
+    background-color:rgb(63, 61, 59);
+    color:burlywood;
+    transition: .3s;
+}
+
+ul li :hover{
+    padding-left: 50px;
+    background-color:rgb(126, 124, 121) ;
+}
+
+.sideBar span{
+    
+    color:burlywood;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem;
+}

@@ -2,6 +2,10 @@ import React,{useEffect, useState} from "react";
 import Axios from 'axios';
 import { useHistory} from "react-router-dom";
 import './ProductScreenStyle.css';
+import CreatePost from "./CreatePost";
+import YourProduct from "./YourProduct";
+import {BrowserRouter, Route} from "react-router-dom";
+import {Link } from "react-router-dom";
 //import LogIn from './LogIn';
 
  function ProductScreen(props){
@@ -9,10 +13,36 @@ import './ProductScreenStyle.css';
      const [userAccount, setUseraccount] = useState([]);
      const [accountNo, setAccountno] = useState('');
      let status =0;
-     const submit = () =>{
+
+    useEffect(() =>{
+        let unmount = false;
+        Axios.get('http://localhost:3001/api/status').then((responce) => {
+            status = responce.data[0].status;
+            //console.log(status);
+            //console.log(responce.data[1]);
+            //setAccountno(responce.data[1].userAcc[0].account_no);
+            //
+            if(status!=1){
+                hisLogin();
+            }
+            else{
+                if(!unmount){
+                setAccountno(responce.data[1].userAcc[0].account_no);
+                setUseraccount(responce.data[1].userAcc[0]);
+                //console.log(userAccount);
+                }
+            }
+        })
+        return () =>{
+            unmount = true;
+        }
+    }, []);
+
+
+     /*const submit = () =>{
         Axios.get('http://localhost:3001/api/status', ).then((responce) => {
         status = responce.data[0].status;
-        console.log(status);
+        //console.log(status);
         //console.log(responce.data[1]);
         //setAccountno(responce.data[1].userAcc[0].account_no);
         setUseraccount(responce.data[1].userAcc[0]);
@@ -26,14 +56,14 @@ import './ProductScreenStyle.css';
     })
     
     };
-    submit();
+    submit();*/
 
     const hisLogin = () =>{
         history.push('/logIn');
     };
 
     const hisCreatePost = () =>{
-        history.push('/createPost');
+        history.push('/createPost1');
     };
 
     const [products, setProduct] = useState([]);
@@ -41,55 +71,40 @@ import './ProductScreenStyle.css';
       const fetchData = () =>{
         Axios.post("/api/getProd", {accountNo : accountNo}).then((responce) =>{
           setProduct(responce.data);
-          //console.log(responce);
+          console.log(accountNo);
         })
       };
         //fetchData();
 
      return (
-     <div>
+     <div className="bigContainer">
+         <BrowserRouter>
          <div className="sideBar">
-             <div className="userDetails">
-                 <span>{userAccount.account_no}</span>
-                 <span>{userAccount.account_name}</span>
-                 <span>{userAccount.phone}</span>
-                 <span>{userAccount.address}</span>
-                 <span>{userAccount.dob}</span>
-                 <span>{userAccount.gender}</span>
-                 <button>Your Products</button>
-                 <button>Your Orders</button>
-                 <button>Wish List</button>
-                 <button>Items Sold</button>
-             </div>
+                <div className="details">
+                 <span> Account No : {userAccount.account_no}</span>
+                 <span> User Name  : {userAccount.user_name}</span>
+                 <span> Phone      : {userAccount.phone}</span>
+                 <span> Address    : {userAccount.address}</span>
+                 <span> Gender     : {userAccount.gender}</span>
+                 </div>
+                 <ul>
+                    
+                    <li><Link to="/CreatePost">Create New Post</Link></li>
+                    <li><Link to="/yourProduct">Your Products</Link></li>
+                    
+                    <li><a href="#">Your Orders</a></li>
+                    <li><a href="#">Wishlist</a></li>
+                    <li><a href="#">Products Sold</a></li>
+                </ul>
+             
          </div>
          
-                <div className="btn">
-                    <button type="button" className="cbtn" onClick={() =>{
-                        hisCreatePost();
-                    }}>
-                        Create New Post
-                    </button>
-                    <button type="button" className="cbtn" onClick={() =>{
-                        fetchData();
-                    }}>
-                        Product List
-                </button>
-                </div>
-    <div className="product_list">
-        {products.map(product => 
-            <div className="product" key={product.product_no}>
+    <div className="showCase">
 
-             <div className="product_title">{product.product_name}</div>
-             <div className="product_price">${product.product_price}</div>
-             <div className="product_rating">{product.rating}</div>
-             <button>+</button>
-             <div className="product_quantity">Qty: {product.quantity}</div>
-             <button>-</button>
-           
-         </div>
-        )
-        }
-   </div>
+        <Route exact path="/yourProduct" component={YourProduct}/>
+        <Route exact path="/createPost" component={CreatePost}/>
+    </div> 
+    </BrowserRouter>
      </div>
      );
  }

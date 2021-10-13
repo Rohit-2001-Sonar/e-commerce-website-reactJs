@@ -1,4 +1,4 @@
-import himg from './ecomh.png';
+import himg from './home.png';
 import './App.css';
 //import data from './data.js';
 import {BrowserRouter, Route} from "react-router-dom";
@@ -46,7 +46,7 @@ function App() {
           </Link>
           <div className="header_optionCart">
           <Link to="/logIn">
-            <button onClick={() =>{
+            <button className="lbtn1" onClick={() =>{
               resetStatus();
             }}>LogOut</button>
             </Link>

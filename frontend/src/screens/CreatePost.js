@@ -11,8 +11,22 @@ function CreatePost(){
     const [accountNo, setAccountno] = useState('');
     let status ;
 
+    useEffect(()=>{
+        Axios.get('http://localhost:3001/api/status').then((responce) => {
+        status = responce.data[0].status;
+        //console.log(status);
+        //console.log(responce.data[1].userAcc[0].account_no);
+        
+        if(status!=1){
+            hisLogin();
+        }
+        else{
+            setAccountno(responce.data[1].userAcc[0].account_no);
+        }
+    })
+    })
     
-     const checkStatus = () =>{
+     /*const checkStatus = () =>{
         Axios.get('http://localhost:3001/api/status').then((responce) => {
         status = responce.data[0].status;
         //console.log(status);
@@ -24,7 +38,7 @@ function CreatePost(){
     })
     return;
     };
-    checkStatus();
+    checkStatus();*/
 
     const history = useHistory();
     const hisLogin = () =>{

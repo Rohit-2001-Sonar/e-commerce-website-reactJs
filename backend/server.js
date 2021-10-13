@@ -43,16 +43,35 @@ app.get('/api/getAllProd', (req, res)=>{
     db.query("SELECT * FROM ecommerce.products;", (err, result) =>{
         res.send(result);
     });
-})
+});
 
 //Get Products
 app.post('/api/getProd', (req,res) =>{
     const accountNo = req.body.accountNo;
-    db.query("SELECT * FROM ecommerce.products where account_no =?;",[accountNo], (err,result) =>{
+    db.query("SELECT * FROM ecommerce.products where account_no =?",[accountNo], (err,result) =>{
         res.send(result);
-        console.log(accountNo);
+        console.log(result,accountNo);
     });
 });
+
+//add Quantity
+app.post('/api/addQty', (req, res)=>{
+    const productNo = req.body.productNo;
+    db.query("UPDATE ecommerce.products SET quantity=quantity+1 WHERE product_no=?;",[productNo], (err, result)=>{
+        console.log(err,result);
+        //res.send(err);
+    });
+
+});
+
+//subract Quantity
+app.post('/api/subQty', (req,res) =>{
+    const productNo = req.body.productNo;
+    db.query("UPDATE ecommerce.products SET quantity=quantity-1 WHERE product_no=?;",[productNo], (err, result)=>{
+        console.log(err,result);
+        //res.send(err);
+    });
+})
 
 //add Product 
 app.post('/api/addProd',(req,res) =>{
@@ -90,7 +109,7 @@ app.post('/api/signUp',(req,res) =>{
     const dob = req.body.dob;
     const gender = req.body.gender;
     
-    const sqlInsert = "INSERT INTO user_accounts VALUES (?,?,?,?,?,?)";
+    const sqlInsert = "INSERT INTO user_accounts(user_name, password, phone, address, dob, gender) VALUES (?,?,?,?,?,?);";
 
     db.query(sqlInsert, [userName, password, phone, address, dob, gender], (err, result) =>{
     

@@ -1,0 +1,15 @@
+.categories{
+    display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(63, 61, 59);
+  position: fixed;
+  z-index: 100;
+  top:3rem;
+  height: 2rem;
+}
+.category{
+    color: burlywood;
+    text-decoration: burlywood 2px;
+}

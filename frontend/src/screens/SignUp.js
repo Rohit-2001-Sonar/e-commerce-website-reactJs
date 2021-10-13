@@ -41,9 +41,9 @@ function SignUp(){
         Axios.post('http://localhost:3001/api/signUp', {userName : userName, password: password, phone: phone, address: address, dob: dob, 
     gender: gender}).then((responce) => {
         //alert("SignUp Successfull");
-        console.log(responce);
+        //console.log(responce);
         
-        if(responce == null){
+        if(responce.data == null){
             hisFun();
         }
         else{
@@ -100,13 +100,13 @@ function SignUp(){
             <input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
                 setGender("male")
             }}/>
-            <label for="male">Male</label>
+            <label htmlFor="male">Male</label>
             </div>
             <div className="form-group7">
-            <input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
+            <input type="radio" id="female" name="gender" value="female" onChange={(e)=>{
                 setGender("female")
             }}/>
-            <label for="male">Female</label>
+            <label htmlFor="female">Female</label>
         
             </div>
             
