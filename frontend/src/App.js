@@ -21,7 +21,7 @@ function App() {
     <BrowserRouter>
     <div className="App">
       <div className="header">
-        <Link to="/">
+        <Link to="/home">
         <div className="logo_img">
           <img  src={himg} width="45" height="45"  alt="" />
         </div>
@@ -56,7 +56,7 @@ function App() {
       <main className="main">
       <div className="home">
        
-        <Route  path="/" exact component={HomeScreen}/>
+        <Route  path="/home" exact component={HomeScreen}/>
         <Route  path="/products" exact component={ProductScreen}/>
         <Route  path="/signUp" exact component={SignUp}/>
         <Route  path="/logIn" exact component={LogIn}/>

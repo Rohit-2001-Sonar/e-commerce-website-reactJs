@@ -41,16 +41,19 @@
   width: 30rem;
 }
 .header_optionSignIn{
-  color: white;
+  color: rgb(63, 61, 59);
   margin: 1rem;
+  font-weight: bold;
 }
 .header_optionLogIn{
-  color: white;
+  color: rgb(63, 61, 59);
   margin: 1rem;
+  font-weight: bold;
 }
 .header_optionCart{
-  color: white;
+  color: rgb(63, 61, 59);
   margin: 1rem;
+  font-weight: bold;
 }
 .product_list{
   display: flex;
