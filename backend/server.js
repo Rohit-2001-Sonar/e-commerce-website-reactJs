@@ -45,7 +45,16 @@ app.get('/api/getAllProd', (req, res)=>{
     });
 });
 
-//Get Products
+//Get products based on category no
+app.post('/api/getCatProd', (req, res)=>{
+    const categoryNo = req.body.categoryNo;
+    db.query("SELECT * FROM ecommerce.products where category_no = ?;",[categoryNo], (err, result) =>{
+        res.send(result);
+        
+    });
+});
+
+//Get Products based on account no
 app.post('/api/getProd', (req,res) =>{
     const accountNo = req.body.accountNo;
     db.query("SELECT * FROM ecommerce.products where account_no =?",[accountNo], (err,result) =>{

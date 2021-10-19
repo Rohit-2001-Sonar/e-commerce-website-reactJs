@@ -4,7 +4,7 @@ import { useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
 
-function Toys (){
+function ProductList (props){
     const [products, setProduct] = useState([]);
       const [accountNo, setAccountno] = useState('');
       let status;
@@ -28,7 +28,7 @@ function Toys (){
         }
         else{
           if(!unmount){
-            setAccountno(responce.data[1].userAcc[0].account_no);
+            //setAccountno(responce.data[1].userAcc[0].account_no);
             //console.log(accountNo);
             fetchData();
           }
@@ -40,9 +40,10 @@ function Toys (){
     }, []);
 
     const fetchData = () =>{
-        Axios.get("/api/getAllProd").then((responce) =>{
+      let categoryNo = props.data;
+        Axios.post("/api/getCatProd", {categoryNo: categoryNo}).then((responce) =>{
           setProduct(responce.data);
-          console.log(responce);
+          console.log(responce.data, props.data, categoryNo);
         })
       };
 
@@ -65,4 +66,4 @@ function Toys (){
     );
 }
 
-export default Toys;
+export default ProductList;

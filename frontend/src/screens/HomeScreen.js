@@ -5,11 +5,8 @@ import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import {Link } from "react-router-dom";
 import Recommendation from "./Recommendation";
-import HomeApp from "./HomeApp";
-import Pantry from "./Pantry";
-import Toys from "./Toys";
-import Sports from "./Sports";
-import Electronics from "./Electronics";
+
+import ProductList from "./ProductList";
 //import data from "../data";
 
 
@@ -105,12 +102,12 @@ import Electronics from "./Electronics";
           </Link>
         </div>
         <div>
-          <Route exact path="/" component={Recommendation}/>
-          <Route exact path="/electronics" component={Electronics}/>
-          <Route exact path="/homeApp" component={HomeApp}/>
-          <Route exact path="/pantry" component={Pantry}/>
-          <Route exact path="/toys" component={Toys}/>
-          <Route exact path="/sports" component={Sports}/>
+          <Route exact path="/"><Recommendation data="0"/></Route>
+          <Route exact path="/electronics"><ProductList data="1"/></Route>
+          <Route exact path="/homeApp"><ProductList data="2"/></Route>
+          <Route exact path="/pantry"><ProductList data="3"/></Route>
+          <Route exact path="/toys"><ProductList data="4"/></Route>
+          <Route exact path="/sports"><ProductList data="5"/></Route>
         </div>
          <div className="product_list_home">
          {/*products.map(product => 

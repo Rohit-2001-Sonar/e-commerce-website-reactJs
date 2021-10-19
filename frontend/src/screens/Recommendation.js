@@ -4,7 +4,7 @@ import { useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
 
-function Recommendation (){
+function Recommendation (props){
     const [products, setProduct] = useState([]);
       const [accountNo, setAccountno] = useState('');
       let status;
@@ -49,6 +49,7 @@ function Recommendation (){
 
     return(
         <div>
+            
             <div className="product_list_home">
                 {products.map(product => 
                 <div className="product" key={product.product_no}>
