@@ -62,6 +62,28 @@ app.post('/api/getWishList', (req,res)=>{
     });
 })
 
+//Get Your Orders
+app.post('/api/getYourOrders', (req, res)=>{
+    const accountNo = req.body.accountNo;
+    db.query("select * from products inner join purchased_history on products.product_no = purchased_history.product_no where purchased_history.buyer_account_no = ?;",[accountNo], (err, result)=>{
+        res.send(result);
+        if(err){
+        console.log(err);
+        }
+    });
+});
+
+//Get Products Sold
+app.post('/api/getProductsSold', (req, res)=>{
+    const accountNo = req.body.accountNo;
+    db.query("select * from products inner join purchased_history on products.product_no = purchased_history.product_no where purchased_history.seller_account_no = ?;",[accountNo], (err, result)=>{
+        res.send(result);
+        if(err){
+        console.log(err);
+        }
+    });
+});
+
 let buyNowProd;
 //Buy Now
 app.post('/api/buyNow', (req, res)=>{
@@ -111,13 +133,24 @@ app.post('/api/addQty', (req, res)=>{
 
 });
 
-//subract Quantity
-app.post('/api/subQty', (req,res) =>{
+//Decrease Quantity
+app.post('/api/decQty', (req,res) =>{
     const productNo = req.body.productNo;
-    db.query("UPDATE ecommerce.products SET quantity=quantity-1 WHERE product_no=?;",[productNo], (err, result)=>{
+    const soldQty = req.body.soldQty;
+    const accountNo = req.body.accountNo;
+    const totalAmt = req.body.totalAmt;
+    const sellerAcc = req.body.sellerAcc;
+    db.query("UPDATE ecommerce.products SET quantity=quantity-? WHERE product_no=?;",[soldQty, productNo], (err, result)=>{
         console.log(err,result);
         //res.send(err);
     });
+
+    db.query("INSERT INTO purchased_history(buyer_account_no, product_no, purchased_qty, total_amt, seller_account_no) VALUES (?,?,?,?,?);",[accountNo, productNo, soldQty, totalAmt, sellerAcc], (err, result)=>{
+        if(err){
+            console.log(err);
+        }
+    })
+
 })
 
 //add Product 
@@ -165,8 +198,8 @@ app.post('/api/signUp',(req,res) =>{
             res.send(err);
         }
         else{
-            console.log(err);
-            res.send(err);
+            
+            res.send('1');
         }
         
     });

@@ -40,7 +40,7 @@
 
 .product_quantity
 {
-    margin-right: -10px;
+    margin-right: 5px;
     margin-left: 40px;
 }
 
@@ -90,7 +90,7 @@
     flex-grow: 2;
 }
 
-.qtyDiv{
+.qtyDiv1{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -164,6 +164,7 @@ ul li :hover{
     background-color: blanchedalmond;
     width: 150px;
     height: 30px;
+    font-weight: bold;
     border-radius: 5px;
     border-width: 3px;
     border-color:  rgb(235, 143, 7);

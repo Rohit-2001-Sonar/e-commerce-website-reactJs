@@ -12,11 +12,7 @@ import Axios from 'axios';
 
 
 function App() {
-  const resetStatus = () =>{
-    Axios.get('http://localhost:3001/api/resetStatus').then((responce) => {
-        
-    })
-  };
+  
   return (
     <BrowserRouter>
     <div className="App">
@@ -44,13 +40,7 @@ function App() {
             <span>Profile</span>
           </div>
           </Link>
-          <div className="header_optionCart">
-          <Link to="/logIn">
-            <button className="lbtn1" onClick={() =>{
-              resetStatus();
-            }}>LogOut</button>
-            </Link>
-          </div>
+          
         </div>
       </div>
       <main className="main">
@@ -61,6 +51,7 @@ function App() {
         <Route  path="/signUp" exact component={SignUp}/>
         <Route  path="/logIn" exact component={LogIn}/>
         <Route  path="/createPost" exact component={CreatePost}/>
+        <Route  path="/" exact component={LogIn}/>
       </div>
       </main>
   

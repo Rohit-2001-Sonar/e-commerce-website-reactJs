@@ -41,9 +41,10 @@ function SignUp(){
         Axios.post('http://localhost:3001/api/signUp', {userName : userName, password: password, phone: phone, address: address, dob: dob, 
     gender: gender}).then((responce) => {
         //alert("SignUp Successfull");
-        //console.log(responce);
+        console.log(responce);
         
-        if(responce.data == null){
+        if(responce.data == 1){
+            alert("Sign Up Successful");
             hisFun();
         }
         else{

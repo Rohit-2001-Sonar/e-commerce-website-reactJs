@@ -5,6 +5,8 @@ import './ProductScreenStyle.css';
 import CreatePost from "./CreatePost";
 import YourProduct from "./YourProduct";
 import WishList from "./WishList";
+import YourOrders from "./YourOrders";
+import ProductsSold from "./ProductsSold";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Link } from "react-router-dom";
 //import LogIn from './LogIn';
@@ -99,9 +101,9 @@ import {Link } from "react-router-dom";
                     <li><Link to="/CreatePost">Create New Post</Link></li>
                     <li><Link to="/yourProduct">Your Products</Link></li>
                     
-                    <li><a href="#">Your Orders</a></li>
+                    <li><Link to="/yourOrders">Your Orders</Link></li>
                     <li><Link to="/wishList">Wishlist</Link></li>
-                    <li><a href="#">Products Sold</a></li>
+                    <li><Link to="/productsSold">Products Sold</Link></li>
                     
                 </ul>
                 <button className="lbtn1" onClick={() =>{
@@ -115,6 +117,8 @@ import {Link } from "react-router-dom";
         <Route exact path="/yourProduct" component={YourProduct}/>
         <Route exact path="/createPost" component={CreatePost}/>
         <Route exact path="/wishList" component={WishList}/>
+        <Route exact path="/yourOrders" component={YourOrders}/>
+        <Route exact path="/productsSold" component={ProductsSold}/>
         
     </div> 
     </BrowserRouter>
