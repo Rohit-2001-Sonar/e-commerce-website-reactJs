@@ -92,7 +92,7 @@ function CreatePost(){
 
                     <div className = "form-group">
                     <label htmlform="category" >Category</label>
-                    <select name="category" onChange={(e)=>{
+                    <select className="selectCatgy" name="category" onChange={(e)=>{
                 setCategoryno(e.target.value);
                 //console.log(categoryNo);
                     }}>
@@ -107,12 +107,12 @@ function CreatePost(){
 
                     <div className="form-group">
                         <label htmlform="quantity" >Quantity</label>
-                        <input type="number" name="quantity" onChange={(e)=>{
+                        <input className="selectQty" type="number" name="quantity" onChange={(e)=>{
                 setQuantity(e.target.value)
             }} required />
                     </div>
                     
-                    <button onClick={() =>{
+                    <button className="createPost" onClick={() =>{
                         submit();
                         //incProdNo();
                     }}>Create Post</button>

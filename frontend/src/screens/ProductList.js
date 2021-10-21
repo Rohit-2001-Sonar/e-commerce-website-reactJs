@@ -12,7 +12,11 @@ function ProductList (props){
 
       const hisLogin = () =>{
         history.push('/logIn');
-    };
+      };
+
+      const hisOrder = () =>{
+        history.push('/orderPage');
+      };
 
     useEffect(()=>{
       let unmount = false;
@@ -28,8 +32,8 @@ function ProductList (props){
         }
         else{
           if(!unmount){
-            //setAccountno(responce.data[1].userAcc[0].account_no);
-            //console.log(accountNo);
+            setAccountno(responce.data[1].userAcc[0].account_no);
+            console.log(responce.data[1].userAcc[0].account_no);
             fetchData();
           }
         }
@@ -46,7 +50,18 @@ function ProductList (props){
           console.log(responce.data, props.data, categoryNo);
         })
       };
+    const addWishlist = (prodNo) =>{
+      Axios.post("/api/addToWishList", {productNo : prodNo, accountNo : accountNo}).then((responce) =>{
+          
+      })
+    };
 
+    const buyNow = (prodNo) =>{
+      Axios.post("/api/buyNow", {productNo : prodNo}).then(() =>{
+          
+      });
+      hisOrder();
+    };
 
     return(
         <div>
@@ -55,11 +70,15 @@ function ProductList (props){
                 <div className="product" key={product.product_no}>
                     <div className="prodDetails">
                         <div className="product_title">{product.product_name}</div>
-                        <div className="product_price">${product.product_price}</div>
+                        <div className="product_price">₹{product.product_price}</div>
                         <div className="product_rating">{product.rating}</div>
                         <div className="product_quantity">Available Qty: {product.quantity}</div>
                     </div>
-           
+                    <div className="buttons">
+                        <button className="BuyNow" onClick={()=>buyNow(product.product_no)}>Buy Now</button>
+                        
+                        <button className="AddtoWishList" onClick={()=>addWishlist(product.product_no)} >Add To Wishlist</button>
+                    </div>
                 </div>)}
             </div>
         </div>

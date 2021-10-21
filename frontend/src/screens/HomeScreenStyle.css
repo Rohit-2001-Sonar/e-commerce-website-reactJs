@@ -17,3 +17,18 @@
 .buyNow{
   margin-right: 3rem;
 }
+
+.froms{
+  display: flex;
+  flex-direction: row;
+  
+}
+.entry{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
+  margin-right: 0px;
+  
+}
+

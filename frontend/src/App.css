@@ -71,8 +71,10 @@
   background-color: white;
 }
 .lbtn1{
-  border-width: 5px;
+  border-width: 3px;
   border-color: rgb(219, 128, 24);
+  height: 2rem;
+  font-weight: bold;
   font-family: "Open Sans", sans-serif;
   background-color: rgb(240, 204, 151);
 }

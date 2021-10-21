@@ -2,7 +2,7 @@ import React,{useEffect, useState} from "react";
 import Axios from 'axios';
 import { useHistory} from "react-router-dom";
 
-function YourProduct(props){
+function WishList(props){
     const history = useHistory();
      const [quantity, setQuantity] = useState('1');
      //const [accountNo, setAccountno] = useState('');
@@ -41,9 +41,9 @@ function YourProduct(props){
 
     const fetchData = () =>{
         
-        Axios.post("/api/getProd", {accountNo : accountNo}).then((responce) =>{
+        Axios.post("/api/getWishList", {accountNo : accountNo}).then((responce) =>{
           setProduct(responce.data);
-          //console.log(responce.data, accountNo);
+          console.log(responce.data, accountNo);
         });
         
       };
@@ -59,7 +59,7 @@ function YourProduct(props){
 
                     <div className="prodDetails">
                     <div className="product_title">{product.product_name}</div>
-                    <div className="product_price">₹{product.product_price}</div>
+                    <div className="product_price">${product.product_price}</div>
                     <div className="product_rating">{product.rating}</div>
                     </div>
 
@@ -75,4 +75,4 @@ function YourProduct(props){
         </div>
     );
 }
-export default YourProduct;
+export default WishList;
