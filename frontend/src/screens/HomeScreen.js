@@ -9,8 +9,6 @@ import Recommendation from "./Recommendation";
 import ProductList from "./ProductList";
 //import data from "../data";
 
-
-
  function HomeScreen(props){
       const [products, setProduct] = useState([]);
       const [accountNo, setAccountno] = useState('');
