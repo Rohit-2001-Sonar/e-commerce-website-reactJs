@@ -4,6 +4,7 @@ import { useHistory} from "react-router-dom";
 import './ProductScreenStyle.css';
 import CreatePost from "./CreatePost";
 import YourProduct from "./YourProduct";
+import WishList from "./WishList";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Link } from "react-router-dom";
 //import LogIn from './LogIn';
@@ -93,7 +94,7 @@ import {Link } from "react-router-dom";
                     <li><Link to="/yourProduct">Your Products</Link></li>
                     
                     <li><a href="#">Your Orders</a></li>
-                    <li><a href="#">Wishlist</a></li>
+                    <li><Link to="/wishList">Wishlist</Link></li>
                     <li><a href="#">Products Sold</a></li>
                 </ul>
              
@@ -103,6 +104,7 @@ import {Link } from "react-router-dom";
 
         <Route exact path="/yourProduct" component={YourProduct}/>
         <Route exact path="/createPost" component={CreatePost}/>
+        <Route exact path="/wishList" component={WishList}/>
     </div> 
     </BrowserRouter>
      </div>

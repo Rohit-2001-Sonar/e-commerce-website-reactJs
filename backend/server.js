@@ -33,10 +33,48 @@ app.get('/api/products', (req, res) => {
 app.get('/api/acc_no',(req, res) =>{
     db.query("SELECT count(*) as count FROM user_accounts", (err, result)=>{
         res.send(result);
-        
+        if(err){
+            console.log(err);
+        }
     });
 });
 
+//post wishList
+app.post('/api/addToWishList', (req,res)=>{
+    const productNo = req.body.productNo;
+    const accountNo = req.body.accountNo;
+    console.log(productNo,accountNo);
+    db.query("INSERT INTO wish_list(account_no, product_no) VALUE (?,?);",[accountNo ,productNo], (err, result)=>{
+        if(err){
+        console.log(err);
+        }
+    });
+});
+
+//Get wish List
+app.post('/api/getWishList', (req,res)=>{
+    const accountNo = req.body.accountNo;
+    db.query("select distinct * from products inner join wish_list on products.product_no = wish_list.product_no where wish_list.account_no = ?;",[accountNo], (err, result)=>{
+        res.send(result);
+        if(err){
+        console.log(err);
+        }
+    });
+})
+
+let buyNowProd;
+//Buy Now
+app.post('/api/buyNow', (req, res)=>{
+    buyNowProd = req.body.productNo;
+});
+
+//get Buy Now product
+app.get('/api/getBuyNowProd', (req, res)=>{
+    db.query("SELECT * FROM ecommerce.products where product_no = ?;",[buyNowProd], (err, result) =>{
+        res.send(result);
+        console.log(result);
+    });
+});
 
 //Get All Products
 app.get('/api/getAllProd', (req, res)=>{
