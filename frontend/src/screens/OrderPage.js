@@ -6,8 +6,10 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 function OrderPage(){
     const history = useHistory();
-    let [products, setProduct] = useState([]);
-    let status =0, accountNo;
+    const [products, setProduct] = useState([]);
+    const [address, setAddress] = useState('');
+    const [quantity, setQuantity] = useState('');
+    let status =0, accountNo, product = [];
 
     useEffect(() =>{
         let unmount = false;
@@ -26,6 +28,7 @@ function OrderPage(){
                 //setUseraccount(responce.data[1].userAcc[0]);
                 //console.log(userAccount);
                 accountNo = responce.data[1].userAcc[0].account_no;
+                setAddress(responce.data[1].userAcc[0].address);
                 //console.log(accountNo);
                 fetchData();
                 }
@@ -43,14 +46,68 @@ function OrderPage(){
 
     const fetchData = () =>{
         Axios.get("/api/getBuyNowProd").then((responce) =>{
+          product = responce.data[0];
           setProduct(responce.data[0]);
-          console.log(responce.data[0].product_no,products);
+          
+          console.log(responce,responce.data[0].product_no, product.product_no, product.product_name);
         });
     };
 
+    const checkQty = ()=>{
+        if(quantity > products.quantity){
+            alert("Quantity Exceeded")
+        }
+    }
+
     return(
-        <div>
-            hi
+        <div className="base-container">
+            <div className="form">
+                {/*<div className="entry">
+                <label className="subEntery">Product Name </label>
+                <label className="subEntery">Product Price </label>
+                <label className="subEntery">Shipping Address </label>
+                </div>
+
+                <div className="entry">
+                <label className="subEntery">{products.product_name}</label>
+                <label className="subEntery">₹{products.product_price}</label>
+                <label className="subEntery">{address}</label>
+                </div>*/}
+
+                <div className="entry">
+                <label className="subEntery">Product Name </label>
+                <label className="subEntery">{products.product_name}</label>
+                </div>
+
+                <div className="entry">
+                <label className="subEntery">Product Price </label>
+                <label className="subEntery">₹{products.product_price}</label>
+                </div>
+
+                <div className="entry">
+                <label className="subEntery">Shipping Address </label>
+                <label className="subEntery">{address}</label>
+                </div>
+
+                <div className="entry">
+                <label htmlform="quantity" >Quantity</label>
+                        <input max={products.quantity} className="selectQty" type="number" name="quantity" onChange={(e)=>{
+                setQuantity(e.target.value);
+                
+            }} required />
+            <label>/{products.quantity}</label>
+                </div>
+                
+                <div className="entry">
+                    <label className="subEntery">Total Amt </label>
+                    <label className="subEntery">{products.product_price * quantity}</label>
+                </div>
+
+                <button className="sbtn" onClick={()=>{
+                    checkQty();
+                }}>Confirm Order</button>
+
+            </div>
             
         </div>
     );

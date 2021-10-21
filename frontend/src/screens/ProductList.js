@@ -70,14 +70,14 @@ function ProductList (props){
                 <div className="product" key={product.product_no}>
                     <div className="prodDetails">
                         <div className="product_title">{product.product_name}</div>
-                        <div className="product_price">${product.product_price}</div>
+                        <div className="product_price">₹{product.product_price}</div>
                         <div className="product_rating">{product.rating}</div>
                         <div className="product_quantity">Available Qty: {product.quantity}</div>
                     </div>
                     <div className="buttons">
-                        <button className="buyNow" onClick={()=>buyNow(product.product_no)}>Buy Now</button>
+                        <button className="BuyNow" onClick={()=>buyNow(product.product_no)}>Buy Now</button>
                         
-                        <button className="addWishlist" onClick={()=>addWishlist(product.product_no)} >Add To Wishlist</button>
+                        <button className="AddtoWishList" onClick={()=>addWishlist(product.product_no)} >Add To Wishlist</button>
                     </div>
                 </div>)}
             </div>

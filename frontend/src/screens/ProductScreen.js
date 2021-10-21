@@ -63,6 +63,12 @@ import {Link } from "react-router-dom";
         history.push('/logIn');
     };
 
+    const resetStatus = () =>{
+        Axios.get('http://localhost:3001/api/resetStatus').then((responce) => {
+            
+        })
+      };
+
     const hisCreatePost = () =>{
         history.push('/createPost1');
     };
@@ -82,11 +88,11 @@ import {Link } from "react-router-dom";
          <BrowserRouter>
          <div className="sideBar">
                 <div className="details">
-                 <span> Account No : {userAccount.account_no}</span>
-                 <span> User Name  : {userAccount.user_name}</span>
-                 <span> Phone      : {userAccount.phone}</span>
-                 <span> Address    : {userAccount.address}</span>
-                 <span> Gender     : {userAccount.gender}</span>
+                 <span className="detail"> Account No : {userAccount.account_no}</span>
+                 <span className="detail"> User Name  : {userAccount.user_name}</span>
+                 <span className="detail"> Phone      : {userAccount.phone}</span>
+                 <span className="detail"> Address    : {userAccount.address}</span>
+                 <span className="detail"> Gender     : {userAccount.gender}</span>
                  </div>
                  <ul>
                     
@@ -96,8 +102,12 @@ import {Link } from "react-router-dom";
                     <li><a href="#">Your Orders</a></li>
                     <li><Link to="/wishList">Wishlist</Link></li>
                     <li><a href="#">Products Sold</a></li>
+                    
                 </ul>
-             
+                <button className="lbtn1" onClick={() =>{
+              resetStatus();
+              hisLogin();
+            }}>Log Out</button>
          </div>
          
     <div className="showCase">
@@ -105,6 +115,7 @@ import {Link } from "react-router-dom";
         <Route exact path="/yourProduct" component={YourProduct}/>
         <Route exact path="/createPost" component={CreatePost}/>
         <Route exact path="/wishList" component={WishList}/>
+        
     </div> 
     </BrowserRouter>
      </div>

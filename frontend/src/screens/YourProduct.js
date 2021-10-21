@@ -43,7 +43,7 @@ function YourProduct(props){
         
         Axios.post("/api/getProd", {accountNo : accountNo}).then((responce) =>{
           setProduct(responce.data);
-          console.log(responce.data, accountNo);
+          //console.log(responce.data, accountNo);
         });
         
       };
@@ -59,7 +59,7 @@ function YourProduct(props){
 
                     <div className="prodDetails">
                     <div className="product_title">{product.product_name}</div>
-                    <div className="product_price">${product.product_price}</div>
+                    <div className="product_price">₹{product.product_price}</div>
                     <div className="product_rating">{product.rating}</div>
                     </div>
 

@@ -21,6 +21,49 @@
     flex-direction: column;
     
 }
+.product_title{
+    font-style: oblique;
+    font-variant: small-caps;
+    font-weight: bolder;
+    margin-right:10px;
+}
+
+.product_price
+{
+    margin-right: 40px;
+}
+
+.product_rating
+{
+    margin-right: 30px;
+}
+
+.product_quantity
+{
+    margin-right: -10px;
+    margin-left: 40px;
+}
+
+.BuyNow
+{
+    margin-top: 10px;
+    background-color: blanchedalmond;
+    
+    border-width: 3px;
+    border-color: rgb(251, 172, 53);
+    margin-right: 2rem;
+    border-radius: 5px;
+}
+
+.AddtoWishList
+{
+    margin-top: 10px;
+    background-color: blanchedalmond;
+    
+    border-radius: 5px;
+    border-width: 3px;
+    border-color:  rgb(235, 143, 7);
+}
 
 .product{
     display: flex;
@@ -29,6 +72,7 @@
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
+    background-color: white;
     box-shadow: 0 0 5px grey;
 }
 
@@ -105,4 +149,39 @@ ul li :hover{
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
+    font-size: 16px;
+}
+
+.detail{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.createPost{
+    margin-top: 10px;
+    background-color: blanchedalmond;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    border-width: 3px;
+    border-color:  rgb(235, 143, 7);
+}
+
+.selectCatgy{
+    margin-top: 14px;
+    min-width: 15em;
+    height: 37px;
+    padding: 0px 20px;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    background-color: whitesmoke;
+    border: 0;
+    border-radius: 10px;
+    border-color: rgb(201, 101, 13);
+    border-width: 5px;
+    border-style: ridgeS;
+    margin-bottom: 11px;
+    transition: all 250ms ease-in-out;
 }
