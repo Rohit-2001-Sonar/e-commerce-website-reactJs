@@ -10,7 +10,8 @@ const app = express();
 const db = mysql.createConnection({
     user : "root",
     host : "localhost",
-    password : "password",
+    //password : "password",
+    password : "naveen10@mysql",
     database : "ecommerce",
     
 });
@@ -88,7 +89,6 @@ app.post('/api/getCatProd', (req, res)=>{
     const categoryNo = req.body.categoryNo;
     db.query("SELECT * FROM ecommerce.products where category_no = ?;",[categoryNo], (err, result) =>{
         res.send(result);
-        
     });
 });
 
