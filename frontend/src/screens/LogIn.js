@@ -28,7 +28,7 @@ function LogIn (){
     let history = useHistory();
     const hisHome = () => 
     {
-        history.push('/');
+        history.push('/products');
         
     };
     const hisSign = () =>{

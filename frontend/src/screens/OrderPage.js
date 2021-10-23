@@ -9,7 +9,8 @@ function OrderPage(){
     const [products, setProduct] = useState([]);
     const [address, setAddress] = useState('');
     const [quantity, setQuantity] = useState('');
-    let status =0, accountNo, product = [];
+    const [accountNo, setAccountno] = useState('');
+    let status =0,product = [];
 
     useEffect(() =>{
         let unmount = false;
@@ -27,7 +28,7 @@ function OrderPage(){
                 //setAccountno(responce.data[1].userAcc[0].account_no);
                 //setUseraccount(responce.data[1].userAcc[0]);
                 //console.log(userAccount);
-                accountNo = responce.data[1].userAcc[0].account_no;
+                setAccountno(responce.data[1].userAcc[0].account_no);
                 setAddress(responce.data[1].userAcc[0].address);
                 //console.log(accountNo);
                 fetchData();
@@ -43,6 +44,9 @@ function OrderPage(){
     const hisLogin = () =>{
         history.push('/logIn');
     };
+    const hisProd = () =>{
+        history.push('/');
+    };
 
     const fetchData = () =>{
         Axios.get("/api/getBuyNowProd").then((responce) =>{
@@ -56,6 +60,12 @@ function OrderPage(){
     const checkQty = ()=>{
         if(quantity > products.quantity){
             alert("Quantity Exceeded")
+        }
+        else{
+            Axios.post("/api/decQty",{soldQty : quantity, productNo : products.product_no, accountNo : accountNo, totalAmt : products.product_price * quantity, sellerAcc : products.account_no}).then((responce) =>{
+                
+              });
+            hisProd();
         }
     }
 
