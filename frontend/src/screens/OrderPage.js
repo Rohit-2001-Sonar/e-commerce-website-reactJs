@@ -62,7 +62,7 @@ function OrderPage(){
             alert("Quantity Exceeded")
         }
         else{
-            Axios.post("/api/decQty",{soldQty : quantity, productNo : products.product_no, accountNo : accountNo, totalAmt : products.product_price * quantity, sellerAcc : products.account_no}).then((responce) =>{
+            Axios.post("/api/decQty",{soldQty : quantity, productNo : products.product_no, accountNo : accountNo, totalAmt : products.product_price * quantity, sellerAcc : products.account_no, categoryNo : products.category_no, subcategoryNo : products.subcategory_no}).then((responce) =>{
                 
               });
             hisProd();

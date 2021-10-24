@@ -32,3 +32,20 @@
   
 }
 
+.highlight {
+	display: inline-block;
+	color: #fff;
+	line-height: 2em;
+	padding: 0px 10px 0px 15px;
+	border-radius: 4px;
+}
+.tag {
+  display: inline-block;
+	background: red;
+  color: #fff;
+  padding: 0px 8px 1px 8px;
+  border-radius: 4px;
+}
+
+
+

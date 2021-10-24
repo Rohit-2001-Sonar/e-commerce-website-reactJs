@@ -21,6 +21,16 @@ app.use(express.json());
 
 let status = 0, userAcc = [];
 
+//Cosine similarity
+
+
+//Best Seller
+app.get('/api/bestSeller', (req, res)=>{
+    db.query("select *,count(purchased_history.product_no) as frequency from purchased_history inner join products on products.product_no = purchased_history.product_no group by purchased_history.product_no ORDER BY count(purchased_history.product_no) desc, products.rating desc;", (err, result)=>{
+        res.send(result);
+    })
+});
+
 app.post('/create',(req, res) =>{
      
 });
@@ -140,18 +150,28 @@ app.post('/api/decQty', (req,res) =>{
     const accountNo = req.body.accountNo;
     const totalAmt = req.body.totalAmt;
     const sellerAcc = req.body.sellerAcc;
+    const categoryNo = req.body.categoryNo;
+    const subcategoryNo = req.body.subcategoryNo;
     db.query("UPDATE ecommerce.products SET quantity=quantity-? WHERE product_no=?;",[soldQty, productNo], (err, result)=>{
         console.log(err,result);
         //res.send(err);
     });
 
-    db.query("INSERT INTO purchased_history(buyer_account_no, product_no, purchased_qty, total_amt, seller_account_no) VALUES (?,?,?,?,?);",[accountNo, productNo, soldQty, totalAmt, sellerAcc], (err, result)=>{
+    db.query("INSERT INTO purchased_history(buyer_account_no, product_no, purchased_qty, total_amt, seller_account_no, category_no, subcategory_no) VALUES (?,?,?,?,?,?,?);",[accountNo, productNo, soldQty, totalAmt, sellerAcc, categoryNo, subcategoryNo], (err, result)=>{
         if(err){
             console.log(err);
         }
     })
 
 })
+
+//Get sub-categories
+app.post('/api/getSubcat', (req,res)=>{
+    const categoryNo = req.body.categoryNo;
+    db.query("SELECT * FROM ecommerce.category where category_no =?",[categoryNo], (err, result)=>{
+        res.send(result);
+    });
+});
 
 //add Product 
 app.post('/api/addProd',(req,res) =>{
@@ -160,12 +180,13 @@ app.post('/api/addProd',(req,res) =>{
     const productPrice = req.body.productPrice;
     const quantity = req.body.quantity;
     const categoryNo = req.body.categoryNo;
+    const subcategoryNo = req.body.subcategoryNo;
     const accountNo = req.body.accountNo;
     //console.log(accountNo);
     
-    const sqlInsert = "INSERT INTO products (product_name, product_price, quantity, category_no, account_no) VALUES (?,?,?,?,?)";
+    const sqlInsert = "INSERT INTO products (product_name, product_price, quantity, category_no, account_no, subcategory_no) VALUES (?,?,?,?,?,?)";
 
-    db.query(sqlInsert, [productName, productPrice, quantity, categoryNo, accountNo], (err, result) =>{
+    db.query(sqlInsert, [productName, productPrice, quantity, categoryNo, accountNo, subcategoryNo], (err, result) =>{
     
         if(err){
             console.log(err);

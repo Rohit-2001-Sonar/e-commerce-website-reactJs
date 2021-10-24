@@ -7,6 +7,7 @@ import {Link } from "react-router-dom";
 import Recommendation from "./Recommendation";
 import OrderPage from "./OrderPage";
 import ProductList from "./ProductList";
+import BestSeller from "./BestSeller";
 
 //import data from "../data";
 
@@ -82,7 +83,9 @@ import ProductList from "./ProductList";
       return (<div className="home">
         <BrowserRouter>
         <div className="categories">
+          <Link to="/bestSeller">
           <div className="category">Best Seller</div>
+          </Link>
           <Link to="/">
           <div className="category">Recommendation</div>
           </Link>
@@ -93,7 +96,7 @@ import ProductList from "./ProductList";
           <div className="category">Home Appliances</div>
           </Link>
           <Link to="/pantry">
-          <div className="category">Pantry</div>
+          <div className="category">Kitchen and Dining</div>
           </Link>
           <Link to="/toys">
           <div className="category">Toys and Games</div>
@@ -103,6 +106,7 @@ import ProductList from "./ProductList";
           </Link>
         </div>
         <div>
+          <Route exact path="/bestSeller"><BestSeller data="0"/></Route>
           <Route exact path="/"><Recommendation data="0"/></Route>
           <Route exact path="/electronics"><ProductList data="1"/></Route>
           <Route exact path="/homeApp"><ProductList data="2"/></Route>

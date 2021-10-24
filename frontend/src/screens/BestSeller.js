@@ -4,10 +4,10 @@ import { useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
 
-function Recommendation (props){
+function BestSeller (props){
     const [products, setProduct] = useState([]);
       const [accountNo, setAccountno] = useState('');
-      let status;
+      let status, count = 1;
       const history = useHistory();
 
       const hisLogin = () =>{
@@ -40,7 +40,7 @@ function Recommendation (props){
     }, []);
 
     const fetchData = () =>{
-        Axios.get("/api/getAllProd").then((responce) =>{
+        Axios.get("/api/bestSeller").then((responce) =>{
           setProduct(responce.data);
           console.log(responce);
         })
@@ -53,7 +53,9 @@ function Recommendation (props){
             <div className="product_list_home">
                 {products.map(product => 
                 <div className="product" key={product.product_no}>
+                    
                     <div className="prodDetails">
+                        <div className="tag"><b>#</b>{count++}</div>
                         <div className="product_title">{product.product_name}</div>
                         <div className="product_price">₹{product.product_price}</div>
                         <div className="product_rating">{product.rating}</div>
@@ -71,4 +73,4 @@ function Recommendation (props){
     );
 }
 
-export default Recommendation;
+export default BestSeller;

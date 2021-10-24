@@ -8,6 +8,8 @@ function CreatePost(){
     const [productPrice, setProductprice] = useState('');
     const [quantity, setQuantity] = useState('');
     const [categoryNo, setCategoryno] = useState('');
+    const [subcategoryNo, setSubcategoryno] = useState('');
+    const [subcategory, setSubcategory] = useState([]);
     const [accountNo, setAccountno] = useState('');
     let status ;
 
@@ -60,7 +62,7 @@ function CreatePost(){
     };*/
 
     const submit = () =>{
-        Axios.post('http://localhost:3001/api/addProd', {productName : productName, productPrice : productPrice, quantity : quantity, categoryNo : categoryNo, accountNo : accountNo}).then((responce) => {
+        Axios.post('http://localhost:3001/api/addProd', {productName : productName, productPrice : productPrice, quantity : quantity, categoryNo : categoryNo, accountNo : accountNo, subcategoryNo : subcategoryNo}).then((responce) => {
         if(responce.data){alert(responce.data.sqlMessage);}
         else{
             alert("Product Added successfully");
@@ -68,6 +70,12 @@ function CreatePost(){
     })
     };
     //console.log(categoryNo);
+
+    const getSubcategory = (catgy) =>{
+        Axios.post("/api/getSubcat", {categoryNo : catgy}).then((responce) =>{
+          setSubcategory(responce.data);
+        });
+    }
 
     return(
         <div className="cointainer">
@@ -94,14 +102,31 @@ function CreatePost(){
                     <label htmlform="category" >Category</label>
                     <select className="selectCatgy" name="category" onChange={(e)=>{
                 setCategoryno(e.target.value);
+                getSubcategory(e.target.value);
                 //console.log(categoryNo);
                     }}>
                         <option defaultValue="" ></option>
                         <option value="1">Electronics</option>
                         <option value="2">Home Appliances</option>
-                        <option value="3">Pantry</option>
+                        <option value="3">Kitchen and Dining </option>
                         <option value="4">Toys and Games</option>
                         <option value="5">Sports and Fitness</option>
+                    </select>
+                    </div>
+
+                    <div className = "form-group">
+                    <label htmlform="category" >Sub-Category</label>
+                    <select className="selectCatgy" name="category" onChange={(e)=>{
+                setSubcategoryno(e.target.value);
+                //console.log(categoryNo);
+                    }}>
+                        <option defaultValue="" ></option>
+                        {
+                            subcategory.map(subcatgy =>
+                                <option value={subcatgy.subcategory_no}>{subcatgy.subcategory_name}</option>
+                            )
+                        }
+                        
                     </select>
                     </div>
 
