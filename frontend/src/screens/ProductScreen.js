@@ -90,11 +90,10 @@ import {Link } from "react-router-dom";
          <BrowserRouter>
          <div className="sideBar">
                 <div className="details">
-                 <span className="detail"> Account No : {userAccount.account_no}</span>
-                 <span className="detail"> User Name  : {userAccount.user_name}</span>
-                 <span className="detail"> Phone      : {userAccount.phone}</span>
-                 <span className="detail"> Address    : {userAccount.address}</span>
-                 <span className="detail"> Gender     : {userAccount.gender}</span>
+                 <span className="detail"> ACCOUNT NO : {userAccount.account_no}</span>
+                 <span className="detail"> USER NAME  : {userAccount.user_name}</span>
+                 <span className="detail"> PHONE      : {userAccount.phone}</span>
+                 <span className="detail"> ADDRESS   : {userAccount.address}</span>
                  </div>
                  <ul>
                     
