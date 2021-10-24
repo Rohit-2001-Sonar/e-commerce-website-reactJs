@@ -104,7 +104,7 @@
    height: 100%;
    width: 250px;
    left: 0;
-   background-color:rgb(63, 61, 59);
+   background-color:rgb(71, 9, 9);
    
 }
 
@@ -128,14 +128,14 @@
     padding-left: 35px;
     border-top:1px solid grey ;
     border-bottom: 1px solid rgb(0, 0, 0);
-    background-color:rgb(63, 61, 59);
+    background-color:rgb(116, 26, 26);
     color:burlywood;
     transition: .3s;
 }
 
 ul li :hover{
     padding-left: 50px;
-    background-color:rgb(126, 124, 121) ;
+    background-color:rgb(180, 49, 49) ;
 }
 
 .sideBar span{

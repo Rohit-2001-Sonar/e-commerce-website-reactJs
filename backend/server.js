@@ -61,6 +61,17 @@ app.post('/api/addToWishList', (req,res)=>{
     });
 });
 
+//add rating
+app.post('/api/addrating', (req, res)=>{
+    const prating= req.body.rating;
+    const pNo=req.body.pno;
+    db.query("UPDATE ecommerce.products SET rating = ? WHERE product_no = ? ;",[prating,pNo], (err,result)=>{
+        if(err){
+            console.log(err);
+        }
+    });
+});
+
 //Get wish List
 app.post('/api/getWishList', (req,res)=>{
     const accountNo = req.body.accountNo;
@@ -120,7 +131,6 @@ app.post('/api/getCatProd', (req, res)=>{
     const categoryNo = req.body.categoryNo;
     db.query("SELECT * FROM ecommerce.products where category_no = ?;",[categoryNo], (err, result) =>{
         res.send(result);
-        
     });
 });
 
@@ -132,6 +142,7 @@ app.post('/api/getProd', (req,res) =>{
         console.log(result,accountNo);
     });
 });
+
 
 //add Quantity
 app.post('/api/addQty', (req, res)=>{

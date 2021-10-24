@@ -1,15 +1,15 @@
 import React,{useEffect, useState} from "react";
 import Axios from 'axios';
 import { useHistory} from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 function YourOrders(props){
+    
     const history = useHistory();
      const [quantity, setQuantity] = useState('1');
      //const [accountNo, setAccountno] = useState('');
      let status =0, accountNo;
      let [products, setProduct] = useState([]);
-
-     
 
     useEffect(() =>{
         let unmount = false;
@@ -40,28 +40,36 @@ function YourOrders(props){
     }, []);
 
     const fetchData = () =>{
-        
         Axios.post("/api/getYourOrders", {accountNo : accountNo}).then((responce) =>{
           setProduct(responce.data);
           console.log(responce.data, accountNo);
         });
-        
       };
 
     const hisLogin = () =>{
         history.push('/logIn');
     };
 
+    const ratingGiven = (rating,pno) => {
+        Axios.post("/api/addrating", {rating : rating,pno : pno}).then((responce) =>{
+            setProduct(responce.data);
+            console.log(responce.data, rating);
+          });
+          alert(`Rating Given`);
+    };
+
     return(
         <div className="product_list">
             {products.map(product => 
                 <div className="product" key={product.product_no}>
-
+                    
                     <div className="prodDetails">
                     <div className="product_title">{product.product_name}</div>
                     <div className="product_price">₹{product.product_price}</div>
-                    <div className="product_rating">{product.rating}</div>
+                    <div className="StarRating">
+                        <ReactStars activeColor="Red" size={20} isHalf={true} onChange={(e) => {ratingGiven(e,product.product_no)} }/>
                     </div>
+                </div>
 
                     <div className="qtyDiv">
                     

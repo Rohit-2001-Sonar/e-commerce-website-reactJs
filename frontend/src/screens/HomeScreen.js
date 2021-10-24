@@ -11,8 +11,6 @@ import BestSeller from "./BestSeller";
 
 //import data from "../data";
 
-
-
  function HomeScreen(props){
       const [products, setProduct] = useState([]);
       const [accountNo, setAccountno] = useState('');

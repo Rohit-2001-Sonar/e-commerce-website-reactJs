@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Axios from "axios";
 import { useHistory} from "react-router-dom";
+import './CreatePost.css';
 
 function CreatePost(){
     let [productNo, setProductno] = useState('');
@@ -83,7 +84,7 @@ function CreatePost(){
 
             <div className="form">
 
-                    <div className="form-group">
+                    <div className="form-groupa">
                         <label htmlform="productname" >Product Name </label>
                         <input type="text" name="productname" onChange={(e)=>{
                 setProductname(e.target.value)
@@ -91,14 +92,14 @@ function CreatePost(){
                     </div>
 
 
-                    <div className="form-group">
+                    <div className="form-groupb">
                         <label htmlform="productprice" >Product Price </label>
                         <input type="number" name="productprice" onChange={(e)=>{
                 setProductprice(e.target.value)
             }} required />
                     </div>
 
-                    <div className = "form-group">
+                    <div className = "form-groupc">
                     <label htmlform="category" >Category</label>
                     <select className="selectCatgy" name="category" onChange={(e)=>{
                 setCategoryno(e.target.value);
@@ -140,7 +141,7 @@ function CreatePost(){
                     <button className="createPost" onClick={() =>{
                         submit();
                         //incProdNo();
-                    }}>Create Post</button>
+                    }}>CREATE POST</button>
 
                 </div>
         </div>
