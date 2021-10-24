@@ -89,7 +89,7 @@ label
     margin-top: 30px;
         margin-left: 10px;
         font-size: 24px;
-        border-radius: 40px;
+        border-radius: 10px;
         border-width: 5px;
         border-color: rgb(219, 128, 24);
         font-family: "Open Sans", sans-serif;
@@ -102,7 +102,6 @@ label
     margin-top: 30px;
         margin-left: 10px;
         font-size: 24px;
-        border-radius: 40px;
         border-width: 5px;
         border-color: rgb(219, 128, 24);
         font-family: "Open Sans", sans-serif;
@@ -112,7 +111,7 @@ label
 
 .signup{
     margin-top: 30px;
-        margin-left: 7px;
+    margin-left: 7px;
 }
 
 .btn1{
