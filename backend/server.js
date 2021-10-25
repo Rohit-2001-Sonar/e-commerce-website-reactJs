@@ -64,8 +64,13 @@ app.post('/api/addToWishList', (req,res)=>{
 //add rating
 app.post('/api/addrating', (req, res)=>{
     const prating= req.body.rating;
-    const pNo=req.body.pno;
-    db.query("UPDATE ecommerce.products SET rating = ? WHERE product_no = ? ;",[prating,pNo], (err,result)=>{
+    const pNo=req.body.pNo;
+    const orderNo=req.body.orderNo;
+    //console.log(prating);
+    db.query("UPDATE ecommerce.purchased_history SET buyer_rating=? where order_no=?;",[prating, orderNo], (err, result)=>{
+
+    })
+    db.query("UPDATE ecommerce.products SET rating=(select avg(purchased_history.buyer_rating) from purchased_history where purchased_history.product_no=?) where products.product_no=?;",[pNo,pNo], (err,result)=>{
         if(err){
             console.log(err);
         }
@@ -81,7 +86,18 @@ app.post('/api/getWishList', (req,res)=>{
         console.log(err);
         }
     });
-})
+});
+
+//Get Recommend
+app.post('/api/getRecommend', (req, res)=>{
+    const accountNo = req.body.accountNo;
+    db.query("SELECT * FROM ecommerce.products INNER JOIN (SELECT distinct products.subcategory_no as subcategory_no FROM ecommerce.wish_list inner join products on wish_list.product_no = products.product_no where wish_list.account_no=?) as sub on products.subcategory_no = sub.subcategory_no;",[accountNo], (err, result)=>{
+        res.send(result);
+        if(err){
+        console.log(err);
+        }
+    });
+});
 
 //Get Your Orders
 app.post('/api/getYourOrders', (req, res)=>{

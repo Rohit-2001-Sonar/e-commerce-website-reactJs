@@ -6,8 +6,8 @@ import {BrowserRouter, Route} from "react-router-dom";
 
 function Recommendation (props){
     const [products, setProduct] = useState([]);
-      const [accountNo, setAccountno] = useState('');
-      let status;
+      //const [accountNo, setAccountno] = useState('');
+      let status, accountNo;
       const history = useHistory();
 
       const hisLogin = () =>{
@@ -28,8 +28,9 @@ function Recommendation (props){
         }
         else{
           if(!unmount){
-            setAccountno(responce.data[1].userAcc[0].account_no);
+            //setAccountno(responce.data[1].userAcc[0].account_no);
             //console.log(accountNo);
+            accountNo = responce.data[1].userAcc[0].account_no;
             fetchData();
           }
         }
@@ -40,7 +41,7 @@ function Recommendation (props){
     }, []);
 
     const fetchData = () =>{
-        Axios.get("/api/getAllProd").then((responce) =>{
+        Axios.post("/api/getRecommend", {accountNo : accountNo}).then((responce) =>{
           setProduct(responce.data);
           console.log(responce);
         })

@@ -50,24 +50,37 @@ function YourOrders(props){
         history.push('/logIn');
     };
 
-    const ratingGiven = (rating,pno) => {
-        Axios.post("/api/addrating", {rating : rating,pno : pno}).then((responce) =>{
-            setProduct(responce.data);
-            console.log(responce.data, rating);
+    const ratingGiven = (rating,orderNo, pno) => {
+        Axios.post("/api/addrating", {rating : rating, orderNo : orderNo, pNo : pno}).then((responce) =>{
+            
           });
           alert(`Rating Given`);
     };
 
+    const showStar = (tot_rating, rating, orderNo, pno) =>{
+        if(rating == null){
+            return(
+            <ReactStars activeColor="Red" size={20} isHalf={true} onChange={(e) => {ratingGiven(e,orderNo, pno)} }/>
+            );
+        }
+        else{
+            return(
+            <div className="rating">rating {tot_rating}</div>
+            );
+        }
+    }
+
     return(
         <div className="product_list">
             {products.map(product => 
-                <div className="product" key={product.product_no}>
+                <div className="product" key={product.order_no}>
                     
                     <div className="prodDetails">
                     <div className="product_title">{product.product_name}</div>
                     <div className="product_price">₹{product.product_price}</div>
                     <div className="StarRating">
-                        <ReactStars activeColor="Red" size={20} isHalf={true} onChange={(e) => {ratingGiven(e,product.product_no)} }/>
+                        
+                        {showStar(product.rating, product.buyer_rating, product.order_no, product.product_no)}
                     </div>
                 </div>
 
