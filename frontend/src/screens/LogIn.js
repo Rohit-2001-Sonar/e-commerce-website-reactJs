@@ -41,13 +41,13 @@ function LogIn (){
                 <div className="form">
                     <div className="form-group1">
                         <label htmlform="username" >Username </label>
-                        <input type="text" name="username" onChange={(e)=>{
+                        <input className="input" type="text" name="username" onChange={(e)=>{
                 setUsername(e.target.value)
             }} required />
                     </div>
                     <div className="form-group2">
                         <label htmlform="password" >Password </label>
-                        <input type="password" name="password" onChange={(e)=>{
+                        <input className="input" type="password" name="password" onChange={(e)=>{
                 setPassword(e.target.value)
             }} required />
                     </div>

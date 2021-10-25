@@ -8,6 +8,7 @@ function YourProduct(props){
      //const [accountNo, setAccountno] = useState('');
      let status =0, accountNo;
      let [products, setProduct] = useState([]);
+     const [stock, setStock] = useState('');
 
      
 
@@ -52,6 +53,19 @@ function YourProduct(props){
         history.push('/logIn');
     };
 
+    const showQty = (quantity) =>{
+        if(quantity > 0){
+            return(
+                <div className="product_quantity">Qty: {quantity}</div>
+            );
+        }
+        else{
+            return(
+                <div className="outofstock">OUT OF STOCK</div>
+            );
+        }
+    }
+
     return(
         <div className="product_list">
             {products.map(product => 
@@ -62,13 +76,19 @@ function YourProduct(props){
                     <div className="product_price">₹{product.product_price}</div>
                     <div className="product_rating">{product.rating}</div>
                     </div>
-
+                    
                     <div className="qtyDiv">
                     
-                    <div className="product_quantity">Qty: {product.quantity}</div>
+                    {showQty(product.quantity)}
                     
                     </div>
-           
+                    <div className="addStock">
+                    <input type="number" className="stock" onChange={(e)=>{
+                        setStock(e.target.value)
+                    }}/>
+                    <button className="addStockbtn">ADD STOCK</button>
+                    </div>
+
                 </div>
                 )
             }

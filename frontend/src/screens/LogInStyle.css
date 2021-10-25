@@ -30,7 +30,7 @@ label
                     margin-bottom: 7px;
                 }
 
-                input 
+                .input 
                 {
                     margin-top: 14px;
                     min-width: 15em;
@@ -66,24 +66,7 @@ label
                                     margin-bottom: 7px;
                                 }
                 
-                                input 
-                                {
-                                    margin-top: 14px;
-                                    min-width: 15em;
-                                    height: 37px;
-                                    padding: 0px 20px;
-                                    font-size: 16px;
-                                    font-family: "Open Sans", sans-serif;
-                                    background-color: whitesmoke;
-                                    border: 0;
-                                    border-radius: 10px;
-                                    border-color: rgb(201, 101, 13);
-                                    border-width: 5px;
-                                    border-style: ridgeS;
-                                    margin-bottom: 11px;
-                                    transition: all 250ms ease-in-out;
-                                    
-                                }
+                                
                 
 .lbtn{
     margin-top: 30px;

@@ -64,47 +64,47 @@ function SignUp(){
         <div className ="form">
             <div className="form-group1">
             <label>Username</label>
-            <input type="text" name="user_name" onChange={(e)=>{
+            <input className="input" type="text" name="user_name" onChange={(e)=>{
                 setUsername(e.target.value)
             }} required/>
             </div>
 
             <div className="form-group2">
             <label>Password</label>
-            <input type="text" name="user_name" onChange={(e)=>{
+            <input className="input" type="text" name="user_name" onChange={(e)=>{
                 setPassword(e.target.value)
             }} required/>
             </div>
 
             <div className="form-group3">
             <label>Phone</label>
-            <input type="text" name="user_name" onChange={(e)=>{
+            <input className="input" type="text" name="user_name" onChange={(e)=>{
                 setPhone(e.target.value)
             }} required/>
             </div>
             <div className="form-group4">
             <label>Address</label>
-            <input type="text" name="user_name" onChange={(e)=>{
+            <input className="input" type="text" name="user_name" onChange={(e)=>{
                 setAddress(e.target.value)
             }} required/>
             </div>
 
             <div className="form-group5">
             <label>D.O.B</label>
-            <input type="text" name="user_name" onChange={(e)=>{
+            <input className="input" type="text" name="user_name" onChange={(e)=>{
                 setDob(e.target.value)
             }} required/>
             </div>
 
             <div className="form-group6">
                 
-            <input type="radio" id="male" name="gender" value="male" onChange={(e)=>{
+            <input className="input" type="radio" id="male" name="gender" value="male" onChange={(e)=>{
                 setGender("male")
             }}/>
             <label htmlFor="male">Male</label>
             </div>
             <div className="form-group7">
-            <input type="radio" id="female" name="gender" value="female" onChange={(e)=>{
+            <input className="input" type="radio" id="female" name="gender" value="female" onChange={(e)=>{
                 setGender("female")
             }}/>
             <label htmlFor="female">Female</label>

@@ -52,6 +52,19 @@ function WishList(props){
         history.push('/logIn');
     };
 
+    const showQty = (quantity) =>{
+        if(quantity > 0){
+            return(
+                <div className="product_quantity">Available Qty: {quantity}</div>
+            );
+        }
+        else{
+            return(
+                <div className="outofstock">OUT OF STOCK</div>
+            );
+        }
+    }
+
     return(
         <div className="product_list">
             {products.map(product => 
@@ -65,7 +78,7 @@ function WishList(props){
 
                     <div className="qtyDiv">
                     
-                    <div className="product_quantity">Qty: {product.quantity}</div>
+                    {showQty(product.quantity)}
                     
                     </div>
            

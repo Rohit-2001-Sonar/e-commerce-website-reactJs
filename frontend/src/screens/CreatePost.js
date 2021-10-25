@@ -86,7 +86,7 @@ function CreatePost(){
 
                     <div className="form-groupa">
                         <label htmlform="productname" >Product Name </label>
-                        <input type="text" name="productname" onChange={(e)=>{
+                        <input className="input" type="text" name="productname" onChange={(e)=>{
                 setProductname(e.target.value)
             }} required />
                     </div>
@@ -94,7 +94,7 @@ function CreatePost(){
 
                     <div className="form-groupb">
                         <label htmlform="productprice" >Product Price </label>
-                        <input type="number" name="productprice" onChange={(e)=>{
+                        <input className="input" type="number" name="productprice" onChange={(e)=>{
                 setProductprice(e.target.value)
             }} required />
                     </div>
@@ -133,7 +133,7 @@ function CreatePost(){
 
                     <div className="form-group">
                         <label htmlform="quantity" >Quantity</label>
-                        <input className="selectQty" type="number" name="quantity" onChange={(e)=>{
+                        <input className="input" type="number" name="quantity" onChange={(e)=>{
                 setQuantity(e.target.value)
             }} required />
                     </div>

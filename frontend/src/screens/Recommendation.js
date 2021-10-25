@@ -47,6 +47,19 @@ function Recommendation (props){
         })
       };
 
+      const showQty = (quantity) =>{
+        if(quantity > 0){
+            return(
+                <div className="product_quantity">Available Qty: {quantity}</div>
+            );
+        }
+        else{
+            return(
+                <div className="outofstock">OUT OF STOCK</div>
+            );
+        }
+    }
+
 
     return(
         <div>
@@ -58,7 +71,7 @@ function Recommendation (props){
                         <div className="product_title">{product.product_name}</div>
                         <div className="product_price">₹{product.product_price}</div>
                         <div className="product_rating">{product.rating}</div>
-                        <div className="product_quantity">Available Qty:= {product.quantity}</div>
+                        {showQty(product.quantity)}
                     </div>
                     <div className="buttons">
                         <button className="BuyNow">Buy Now</button>
