@@ -52,6 +52,10 @@ function YourProduct(props){
     const hisLogin = () =>{
         history.push('/logIn');
     };
+    const hisProd = () =>{
+        history.push('/productScreen');
+    };
+
 
     const showQty = (quantity) =>{
         if(quantity > 0){
@@ -65,6 +69,17 @@ function YourProduct(props){
             );
         }
     }
+
+    const addStock = (pno) =>{
+        
+        Axios.post("/api/addStock", {stock : stock, productNo : pno }).then((responce) =>{
+          
+          //console.log(responce.data, accountNo);
+        });
+        alert("Stock updated successfully")
+        hisProd();
+        
+      };
 
     return(
         <div className="product_list">
@@ -84,9 +99,11 @@ function YourProduct(props){
                     </div>
                     <div className="addStock">
                     <input type="number" className="stock" onChange={(e)=>{
-                        setStock(e.target.value)
+                        setStock(e.target.value);
                     }}/>
-                    <button className="addStockbtn">ADD STOCK</button>
+                    <button className="addStockbtn" onClick={()=>{
+                        addStock(product.product_no);
+                    }}>ADD STOCK</button>
                     </div>
 
                 </div>

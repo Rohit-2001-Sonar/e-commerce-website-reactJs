@@ -161,9 +161,11 @@ app.post('/api/getProd', (req,res) =>{
 
 
 //add Quantity
-app.post('/api/addQty', (req, res)=>{
+app.post('/api/addStock', (req, res)=>{
     const productNo = req.body.productNo;
-    db.query("UPDATE ecommerce.products SET quantity=quantity+1 WHERE product_no=?;",[productNo], (err, result)=>{
+    const stock = req.body.stock;
+
+    db.query("UPDATE ecommerce.products SET quantity=quantity+? WHERE product_no=?;",[stock, productNo], (err, result)=>{
         console.log(err,result);
         //res.send(err);
     });
