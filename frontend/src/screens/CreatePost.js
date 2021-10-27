@@ -131,7 +131,7 @@ function CreatePost(){
                     </select>
                     </div>
 
-                    <div className="form-group">
+                    <div className="form-groupz">
                         <label htmlform="quantity" >Quantity</label>
                         <input className="input" type="number" name="quantity" onChange={(e)=>{
                 setQuantity(e.target.value)
