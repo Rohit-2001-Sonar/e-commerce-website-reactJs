@@ -89,6 +89,15 @@ app.post('/api/getWishList', (req,res)=>{
     });
 });
 
+//Remove from wish
+app.post('/api/removeWish', (req,res)=>{
+    const accountNo = req.body.accountNo;
+    const productNo = req.body.productNo;
+    db.query("delete from wish_list where account_no=? and product_no=?;",[accountNo, productNo], (err, result)=>{
+        console.log(err,accountNo, productNo);
+    });
+});
+
 //Get Recommend
 app.post('/api/getRecommend', (req, res)=>{
     const accountNo = req.body.accountNo;

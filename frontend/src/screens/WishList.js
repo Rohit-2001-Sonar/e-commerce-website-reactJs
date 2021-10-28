@@ -6,7 +6,7 @@ import ReactStars from "react-rating-stars-component";
 function WishList(props){
     const history = useHistory();
      const [quantity, setQuantity] = useState('1');
-     //const [accountNo, setAccountno] = useState('');
+     const [accountNo1, setAccountno] = useState('');
      let status =0, accountNo;
      let [products, setProduct] = useState([]);
 
@@ -44,7 +44,8 @@ function WishList(props){
         
         Axios.post("/api/getWishList", {accountNo : accountNo}).then((responce) =>{
           setProduct(responce.data);
-          console.log(responce.data, accountNo);
+          setAccountno(accountNo);
+          console.log(responce.data, accountNo1);
         });
         
       };
@@ -70,9 +71,12 @@ function WishList(props){
     }
 
     const remove = (prodNo) =>{
-        Axios.post("/api/addToWishList", {productNo : prodNo, accountNo : accountNo}).then((responce) =>{
+        
+        console.log(accountNo1, 8);
+        Axios.post("/api/removeWish", { accountNo : accountNo1, productNo : prodNo}).then((responce) =>{
             
-        })
+        });
+        alert("removed from wishlist")
       };
   
       const buyNow = (prodNo) =>{
