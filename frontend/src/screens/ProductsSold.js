@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from "react";
 import Axios from 'axios';
 import { useHistory} from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 function ProductsSold(props){
     const history = useHistory();
@@ -60,7 +61,7 @@ function ProductsSold(props){
                     <div className="prodDetails">
                     <div className="product_title">{product.product_name}</div>
                     <div className="product_price">₹{product.product_price}</div>
-                    <div className="product_rating">{product.rating}</div>
+                    <div className="product_rating"><ReactStars edit={false} activeColor="Red" size={20} isHalf={true} value={product.rating!=null?product.rating:0}/></div>
                     </div>
 
                     <div className="qtyDiv">

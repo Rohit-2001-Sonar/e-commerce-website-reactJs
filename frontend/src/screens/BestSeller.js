@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 function BestSeller (props){
     const [products, setProduct] = useState([]);
@@ -46,6 +47,19 @@ function BestSeller (props){
         })
       };
 
+      const showQty = (quantity) =>{
+        if(quantity > 0){
+            return(
+                <div className="product_quantity">Available Qty: {quantity}</div>
+            );
+        }
+        else{
+            return(
+                <div className="outofstock">OUT OF STOCK</div>
+            );
+        }
+    }
+
 
     return(
         <div>
@@ -58,8 +72,13 @@ function BestSeller (props){
                         <div className="tag"><b>#</b>{count++}</div>
                         <div className="product_title">{product.product_name}</div>
                         <div className="product_price">₹{product.product_price}</div>
-                        <div className="product_rating">{product.rating}</div>
-                        <div className="product_quantity">Available Qty:= {product.quantity}</div>
+                        <div className="product_rating">
+                        <ReactStars edit={false} activeColor="Red" size={20} isHalf={true} value={product.rating!=null?product.rating:0}/>
+                        </div>
+                        
+                    </div>
+                    <div>
+                    {showQty(product.quantity)}
                     </div>
                     <div className="buttons">
                         <button className="BuyNow">Buy Now</button>

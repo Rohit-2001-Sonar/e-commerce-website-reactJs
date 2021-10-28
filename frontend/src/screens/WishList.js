@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from "react";
 import Axios from 'axios';
 import { useHistory} from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 function WishList(props){
     const history = useHistory();
@@ -51,6 +52,9 @@ function WishList(props){
     const hisLogin = () =>{
         history.push('/logIn');
     };
+    const hisOrder = () =>{
+        history.push('/orderPage');
+      };
 
     const showQty = (quantity) =>{
         if(quantity > 0){
@@ -65,6 +69,19 @@ function WishList(props){
         }
     }
 
+    const addWishlist = (prodNo) =>{
+        Axios.post("/api/addToWishList", {productNo : prodNo, accountNo : accountNo}).then((responce) =>{
+            
+        })
+      };
+  
+      const buyNow = (prodNo) =>{
+        Axios.post("/api/buyNow", {productNo : prodNo}).then(() =>{
+            
+        });
+        hisOrder();
+      };
+
     return(
         <div className="product_list">
             {products.map(product => 
@@ -73,13 +90,18 @@ function WishList(props){
                     <div className="prodDetails">
                     <div className="product_title">{product.product_name}</div>
                     <div className="product_price">₹{product.product_price}</div>
-                    <div className="product_rating">{product.rating}</div>
+                    <div className="product_rating"><ReactStars edit={false} activeColor="Red" size={20} isHalf={true} value={product.rating!=null?product.rating:0}/></div>
                     </div>
 
                     <div className="qtyDiv">
                     
                     {showQty(product.quantity)}
                     
+                    </div>
+                    <div className="buttons">
+                        <button className="BuyNow" onClick={()=>buyNow(product.product_no)}>Buy Now</button>
+                        
+                        <button className="AddtoWishList" onClick={()=>addWishlist(product.product_no)}>Add To Wishlist</button>
                     </div>
            
                 </div>

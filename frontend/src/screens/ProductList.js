@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 function ProductList (props){
     const [products, setProduct] = useState([]);
@@ -48,7 +49,7 @@ function ProductList (props){
         Axios.post("/api/getCatProd", {categoryNo: categoryNo}).then((responce) =>{
           setProduct(responce.data);
           console.log(responce.data, props.data, categoryNo);
-        })
+        });
       };
     const addWishlist = (prodNo) =>{
       Axios.post("/api/addToWishList", {productNo : prodNo, accountNo : accountNo}).then((responce) =>{
@@ -84,8 +85,11 @@ function ProductList (props){
                     <div className="prodDetails">
                         <div className="product_title">{product.product_name}</div>
                         <div className="product_price">₹{product.product_price}</div>
-                        <div className="product_rating">{product.rating}</div>
-                        {showQty(product.quantity)}
+                        <div className="product_rating"><ReactStars edit={false} activeColor="Red" size={20} isHalf={true} value={product.rating!=null?product.rating:0}/></div>
+                        
+                    </div>
+                    <div>
+                    {showQty(product.quantity)}
                     </div>
                     <div className="buttons">
                         <button className="BuyNow" onClick={()=>buyNow(product.product_no)}>Buy Now</button>

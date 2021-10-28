@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 function Recommendation (props){
     const [products, setProduct] = useState([]);
@@ -12,6 +13,9 @@ function Recommendation (props){
 
       const hisLogin = () =>{
         history.push('/logIn');
+    };
+    const hisOrder = () =>{
+      history.push('/orderPage');
     };
 
     useEffect(()=>{
@@ -60,6 +64,20 @@ function Recommendation (props){
         }
     }
 
+    const addWishlist = (prodNo) =>{
+      Axios.post("/api/addToWishList", {productNo : prodNo, accountNo : accountNo}).then((responce) =>{
+          
+      })
+    };
+
+    const buyNow = (prodNo) =>{
+      Axios.post("/api/buyNow", {productNo : prodNo}).then(() =>{
+          
+      });
+      hisOrder();
+    };
+
+
 
     return(
         <div>
@@ -70,13 +88,18 @@ function Recommendation (props){
                     <div className="prodDetails">
                         <div className="product_title">{product.product_name}</div>
                         <div className="product_price">₹{product.product_price}</div>
-                        <div className="product_rating">{product.rating}</div>
-                        {showQty(product.quantity)}
+                        <div className="product_rating">
+                        <ReactStars edit={false} activeColor="Red" size={20} isHalf={true} value={product.rating!=null?product.rating:0}/>
+                        </div>
+                        
+                    </div>
+                    <div>
+                    {showQty(product.quantity)}
                     </div>
                     <div className="buttons">
-                        <button className="BuyNow">Buy Now</button>
+                        <button className="BuyNow" onClick={()=>buyNow(product.product_no)}>Buy Now</button>
                         
-                        <button className="AddtoWishList">Add To Wishlist</button>
+                        <button className="AddtoWishList" onClick={()=>addWishlist(product.product_no)}>Add To Wishlist</button>
                     </div>
            
                 </div>)}

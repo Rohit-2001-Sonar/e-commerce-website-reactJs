@@ -65,7 +65,7 @@ function YourOrders(props){
         }
         else{
             return(
-            <div className="rating">rating {tot_rating}</div>
+                <ReactStars edit={false} activeColor="Red" size={20} isHalf={true} value={tot_rating}/>
             );
         }
     }
