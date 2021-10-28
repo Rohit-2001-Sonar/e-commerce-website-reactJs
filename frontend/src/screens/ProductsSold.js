@@ -67,7 +67,7 @@ function ProductsSold(props){
                     <div className="qtyDiv">
                     
                     <div className="product_quantity">Sold Qty: {product.purchased_qty}</div>
-                    
+                    <div className="shipping">Shipped Address : {product.shipping_address}</div>
                     </div>
            
                     <div>Amt: ₹{product.total_amt}</div>

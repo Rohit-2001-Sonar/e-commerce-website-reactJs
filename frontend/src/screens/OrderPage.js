@@ -3,12 +3,14 @@ import Axios from "axios";
 import { useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
+import './ProductScreenStyle.css';
 
 function OrderPage(){
     const history = useHistory();
     const [products, setProduct] = useState([]);
     const [address, setAddress] = useState('');
     const [quantity, setQuantity] = useState('');
+    const [shipping, setShipping] = useState('');
     const [accountNo, setAccountno] = useState('');
     let status =0,product = [];
 
@@ -62,7 +64,7 @@ function OrderPage(){
             alert("Quantity Exceeded")
         }
         else{
-            Axios.post("/api/decQty",{soldQty : quantity, productNo : products.product_no, accountNo : accountNo, totalAmt : products.product_price * quantity, sellerAcc : products.account_no, categoryNo : products.category_no, subcategoryNo : products.subcategory_no}).then((responce) =>{
+            Axios.post("/api/decQty",{soldQty : quantity, productNo : products.product_no, accountNo : accountNo, totalAmt : products.product_price * quantity, sellerAcc : products.account_no, categoryNo : products.category_no, subcategoryNo : products.subcategory_no, shipping : shipping}).then((responce) =>{
                 
               });
             hisProd();
@@ -96,12 +98,15 @@ function OrderPage(){
 
                 <div className="entry">
                 <label className="subEntery">Shipping Address </label>
-                <label className="subEntery">{address}</label>
+                <input className="input"  type="text" name="shippingAddr" onChange={(e)=>{
+                setShipping(e.target.value);
+                
+            }} required />
                 </div>
 
                 <div className="entry">
                 <label htmlform="quantity" >Quantity</label>
-                        <input max={products.quantity} className="selectQty" type="number" name="quantity" onChange={(e)=>{
+                        <input className="input" max={products.quantity}  type="number" name="quantity" onChange={(e)=>{
                 setQuantity(e.target.value);
                 
             }} required />

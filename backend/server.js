@@ -182,12 +182,13 @@ app.post('/api/decQty', (req,res) =>{
     const sellerAcc = req.body.sellerAcc;
     const categoryNo = req.body.categoryNo;
     const subcategoryNo = req.body.subcategoryNo;
+    const shipping = req.body.shipping;
     db.query("UPDATE ecommerce.products SET quantity=quantity-? WHERE product_no=?;",[soldQty, productNo], (err, result)=>{
         console.log(err,result);
         //res.send(err);
     });
 
-    db.query("INSERT INTO purchased_history(buyer_account_no, product_no, purchased_qty, total_amt, seller_account_no, category_no, subcategory_no) VALUES (?,?,?,?,?,?,?);",[accountNo, productNo, soldQty, totalAmt, sellerAcc, categoryNo, subcategoryNo], (err, result)=>{
+    db.query("INSERT INTO purchased_history(buyer_account_no, product_no, purchased_qty, total_amt, seller_account_no, category_no, subcategory_no, shipping_address) VALUES (?,?,?,?,?,?,?,?);",[accountNo, productNo, soldQty, totalAmt, sellerAcc, categoryNo, subcategoryNo, shipping], (err, result)=>{
         if(err){
             console.log(err);
         }

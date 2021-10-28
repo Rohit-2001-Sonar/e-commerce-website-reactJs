@@ -124,7 +124,8 @@ function CreatePost(){
                         <option defaultValue="" ></option>
                         {
                             subcategory.map(subcatgy =>
-                                <option value={subcatgy.subcategory_no}>{subcatgy.subcategory_name}</option>
+
+                                <option key={subcatgy.subcategory_no} value={subcatgy.subcategory_no}>{subcatgy.subcategory_name}</option>
                             )
                         }
                         
