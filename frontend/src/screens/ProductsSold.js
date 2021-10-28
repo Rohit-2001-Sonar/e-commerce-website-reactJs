@@ -60,7 +60,7 @@ function ProductsSold(props){
                     <div className="prodDetails">
                     <div className="product_title">{product.product_name}</div>
                     <div className="product_price">₹{product.product_price}</div>
-                    <div className="product_rating">{product.rating}</div>
+                    <div className="product_rating">Rating : {product.rating}</div>
                     </div>
 
                     <div className="qtyDiv">

@@ -65,7 +65,7 @@ function YourOrders(props){
         }
         else{
             return(
-            <div className="rating">rating {tot_rating}</div>
+            <div className="rating">Rating : {tot_rating} </div>
             );
         }
     }
