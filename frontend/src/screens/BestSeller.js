@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import Axios from "axios";
 import { useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
+import './BestSeller.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
@@ -64,11 +65,11 @@ function BestSeller (props){
     return(
         <div className="bestSeller">
             <div className="catgyList">
-              <button className="catgybtn" onClick={()=>{fetchData(1)}}>Electronics</button>
-              <button className="catgybtn" onClick={()=>{fetchData(2)}}>Home Appliances</button>
-              <button className="catgybtn" onClick={()=>{fetchData(3)}}>Kitchen and Dining</button>
-              <button className="catgybtn" onClick={()=>{fetchData(4)}}>Toys and Games</button>
-              <button className="catgybtn" onClick={()=>{fetchData(5)}}>Sports and fitness</button>
+              <button className="catgybtn1" onClick={()=>{fetchData(1)}}>Electronics</button>
+              <button className="catgybtn2" onClick={()=>{fetchData(2)}}>Home Appliances</button>
+              <button className="catgybtn3" onClick={()=>{fetchData(3)}}>Kitchen and Dining</button>
+              <button className="catgybtn4" onClick={()=>{fetchData(4)}}>Toys and Games</button>
+              <button className="catgybtn5" onClick={()=>{fetchData(5)}}>Sports and fitness</button>
             </div>
             <div className="product_list_best">
                 {products.map(product => 
