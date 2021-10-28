@@ -25,8 +25,9 @@ let status = 0, userAcc = [];
 
 
 //Best Seller
-app.get('/api/bestSeller', (req, res)=>{
-    db.query("select *,count(purchased_history.product_no) as frequency from purchased_history inner join products on products.product_no = purchased_history.product_no group by purchased_history.product_no ORDER BY count(purchased_history.product_no) desc, products.rating desc;", (err, result)=>{
+app.post('/api/bestSeller', (req, res)=>{
+    const categoryNo = req.body.categoryNo;
+    db.query("SELECT * FROM (SELECT product_no,category_no,sum(purchased_qty) as sum,avg(buyer_rating) as avgrating FROM ecommerce.purchased_history group by product_no having category_no=? order by sum desc, avgrating desc limit 10) as t inner join products on products.product_no = t.product_no;",[categoryNo], (err, result)=>{
         res.send(result);
     })
 });

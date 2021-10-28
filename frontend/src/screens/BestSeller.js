@@ -8,7 +8,7 @@ import ReactStars from "react-rating-stars-component";
 function BestSeller (props){
     const [products, setProduct] = useState([]);
       const [accountNo, setAccountno] = useState('');
-      let status, count = 1;
+      let status, count = 1, catNo=1;
       const history = useHistory();
 
       const hisLogin = () =>{
@@ -31,7 +31,7 @@ function BestSeller (props){
           if(!unmount){
             setAccountno(responce.data[1].userAcc[0].account_no);
             //console.log(accountNo);
-            fetchData();
+            
           }
         }
     })
@@ -40,8 +40,8 @@ function BestSeller (props){
   }
     }, []);
 
-    const fetchData = () =>{
-        Axios.get("/api/bestSeller").then((responce) =>{
+    const fetchData = (catNo) =>{
+        Axios.post("/api/bestSeller",{categoryNo : catNo}).then((responce) =>{
           setProduct(responce.data);
           console.log(responce);
         })
@@ -62,9 +62,15 @@ function BestSeller (props){
 
 
     return(
-        <div>
-            
-            <div className="product_list_home">
+        <div className="bestSeller">
+            <div className="catgyList">
+              <button className="catgybtn" onClick={()=>{fetchData(1)}}>Electronics</button>
+              <button className="catgybtn" onClick={()=>{fetchData(2)}}>Home Appliances</button>
+              <button className="catgybtn" onClick={()=>{fetchData(3)}}>Kitchen and Dining</button>
+              <button className="catgybtn" onClick={()=>{fetchData(4)}}>Toys and Games</button>
+              <button className="catgybtn" onClick={()=>{fetchData(5)}}>Sports and fitness</button>
+            </div>
+            <div className="product_list_best">
                 {products.map(product => 
                 <div className="product" key={product.product_no}>
                     

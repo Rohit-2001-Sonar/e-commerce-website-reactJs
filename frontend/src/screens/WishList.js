@@ -69,7 +69,7 @@ function WishList(props){
         }
     }
 
-    const addWishlist = (prodNo) =>{
+    const remove = (prodNo) =>{
         Axios.post("/api/addToWishList", {productNo : prodNo, accountNo : accountNo}).then((responce) =>{
             
         })
@@ -101,7 +101,7 @@ function WishList(props){
                     <div className="buttons">
                         <button className="BuyNow" onClick={()=>buyNow(product.product_no)}>Buy Now</button>
                         
-                        <button className="AddtoWishList" onClick={()=>addWishlist(product.product_no)}>Add To Wishlist</button>
+                        <button className="AddtoWishList" onClick={()=>remove(product.product_no)}>Remove</button>
                     </div>
            
                 </div>

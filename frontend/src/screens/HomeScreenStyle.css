@@ -48,6 +48,16 @@
   padding: 0px 8px 1px 8px;
   border-radius: 4px;
 }
+.bestSeller{
+  display: flex;
+  flex-direction: row;
+}
 
-
+.catgyList{
+  display: flex;
+  flex-direction: column;
+}
+.product_list_best{
+  width: 90%;
+}
 
