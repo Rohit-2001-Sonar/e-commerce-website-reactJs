@@ -29,8 +29,8 @@ An e-commerce website built using ReactJS and NodeJS. E-commerce ( electronic co
 - [YourProduct.js](https://github.com/vinothsubbiah/e-commerce-website-reactJs/blob/main/frontend/src/screens/YourProduct.js) - Displays the products uploaded by the user. This page is only available for the seller.
 - All css files are used for styling the respective pages.
 
-## Tools Required
-- Visula Studio Code 
+## Software Tools Requirement
+- Visual Studio Code 
 - ReactJs
 - NodeJs
 - MySql
