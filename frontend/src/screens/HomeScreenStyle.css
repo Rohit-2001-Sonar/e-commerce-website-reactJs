@@ -79,3 +79,17 @@
                                     transition: all 250ms ease-in-out;
                                     
                                 }
+
+.sorting{
+  display: flex;
+  flex-direction: row;
+}
+
+.sorting-btn{
+  margin-right: 1rem;
+  background-color: aliceblue;
+  border-radius: 10px;
+  margin-left: 1rem;
+  border-color: aliceblue;
+  box-shadow: 0 0 5px grey;
+}

@@ -1,9 +1,13 @@
 import React, {useState, useEffect} from "react";
 import Axios from "axios";
-import { useHistory} from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import './HomeScreenStyle.css';
 import {BrowserRouter, Route} from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import SortedList from "./SortedList";
+import ShowAZ from "./ShowAZ";
+import SortedListlh from "./SortedListlh";
+import SortRating from "./SortRating";
 
 function ProductList (props){
     const [products, setProduct] = useState([]);
@@ -17,6 +21,10 @@ function ProductList (props){
 
       const hisOrder = () =>{
         history.push('/orderPage');
+      };
+
+      const hisSortedList = () =>{
+        history.push('/home');
       };
 
     useEffect(()=>{
@@ -51,6 +59,14 @@ function ProductList (props){
           console.log(responce.data, props.data, categoryNo);
         });
       };
+
+    const sorting = () =>{
+      let categoryNo = props.data;
+        Axios.post("/api/getCatProdSorted", {categoryNo: categoryNo}).then((responce) =>{
+          setProduct(responce.data);
+          console.log(responce.data, props.data, categoryNo);
+        });
+    }
     const addWishlist = (prodNo) =>{
       Axios.post("/api/addToWishList", {productNo : prodNo, accountNo : accountNo}).then((responce) =>{
           
@@ -79,8 +95,15 @@ function ProductList (props){
 
     return(
         <div>
+          <BrowserRouter>
             <div className="product_list_home">
-                {products.map(product => 
+              <div className="sorting">
+                <Link to="/showAll"><button className="sorting-btn">Show All A-Z</button></Link>
+                <Link to="/sortPricelh"><button className="sorting-btn" >SortBy price(low to high)</button></Link>
+                <Link to="/sortPricehl"><button className="sorting-btn" >SortBy price(high to low)</button></Link>
+                <Link to="/sortRating"><button className="sorting-btn">SortBy rating</button></Link>
+              </div>
+                {/*products.map(product => 
                 <div className="product" key={product.product_no}>
                     <div className="prodDetails">
                         <div className="product_title">{product.product_name}</div>
@@ -96,8 +119,14 @@ function ProductList (props){
                         
                         <button className="AddtoWishList" onClick={()=>addWishlist(product.product_no)} >Add To Wishlist</button>
                     </div>
-                </div>)}
+                </div>)*/}
             </div>
+            <Route exact path="/showAll"><ShowAZ data={props.data}/></Route>
+            <Route exact path="/sortPricelh"><SortedListlh data={props.data}/></Route>
+            <Route exact path="/sortPricehl"><SortedList data={props.data}/></Route>
+            <Route exact path="/sortRating"><SortRating data={props.data}/></Route>
+            
+            </BrowserRouter>
         </div>
     );
 }

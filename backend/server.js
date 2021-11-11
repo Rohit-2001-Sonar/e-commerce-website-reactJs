@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 //const data = require('./data');
 const mysql = require("mysql");
+//const recommend = require('collaborative-filter');
 
 const app = express();
 
@@ -22,7 +23,17 @@ app.use(express.json());
 let status = 0, userAcc = [];
 
 //Cosine similarity
-
+const ratings = [
+    [1, 0, 0],
+    [1, 0, 0],
+    [1, 0, 0],
+   ];
+   
+   // if path error change before /node_modules
+   const recommend = require('D:/react_apps/e-com/node_modules/collaborative-filter/lib/cf_api.js');
+ 
+const result = recommend.cFilter(ratings, 2);
+   console.log("recommend = ",result);
 
 //Best Seller
 app.post('/api/bestSeller', (req, res)=>{
@@ -156,6 +167,38 @@ app.get('/api/getAllProd', (req, res)=>{
 app.post('/api/getCatProd', (req, res)=>{
     const categoryNo = req.body.categoryNo;
     db.query("SELECT * FROM ecommerce.products where category_no = ?;",[categoryNo], (err, result) =>{
+        res.send(result);
+    });
+});
+
+//Get products based on category no
+app.post('/api/getCatProdAZ', (req, res)=>{
+    const categoryNo = req.body.categoryNo;
+    db.query("SELECT * FROM ecommerce.products where category_no = ? order by product_name asc;",[categoryNo], (err, result) =>{
+        res.send(result);
+    });
+});
+
+//Get products based on caetgory sorted h-l
+app.post('/api/getCatProdSorted', (req, res)=>{
+    const categoryNo = req.body.categoryNo;
+    db.query("SELECT * FROM ecommerce.products where category_no = ? order by product_price desc;",[categoryNo], (err, result) =>{
+        res.send(result);
+    });
+});
+
+//Get products based on caetgory sorted l-h
+app.post('/api/getCatProdSortedlh', (req, res)=>{
+    const categoryNo = req.body.categoryNo;
+    db.query("SELECT * FROM ecommerce.products where category_no = ? order by product_price asc;",[categoryNo], (err, result) =>{
+        res.send(result);
+    });
+});
+
+//Get products based on caetgory sorted Rating
+app.post('/api/getCatProdRating', (req, res)=>{
+    const categoryNo = req.body.categoryNo;
+    db.query("SELECT * FROM ecommerce.products where category_no = ? order by rating desc;",[categoryNo], (err, result) =>{
         res.send(result);
     });
 });

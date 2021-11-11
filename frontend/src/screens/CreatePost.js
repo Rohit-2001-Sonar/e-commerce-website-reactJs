@@ -47,6 +47,9 @@ function CreatePost(){
     const hisLogin = () =>{
         history.push('/logIn');
     };
+    const hisCreate = () =>{
+        history.push('/createPost');
+    };
 
     /*const incProdNo = () =>{
         Axios.get('http://localhost:3001/api/prod_no').then((responce) => {
@@ -67,6 +70,7 @@ function CreatePost(){
         if(responce.data){alert(responce.data.sqlMessage);}
         else{
             alert("Product Added successfully");
+            hisCreate();
         }
     })
     };
@@ -139,7 +143,7 @@ function CreatePost(){
             }} required />
                     </div>
                     
-                    <button className="createPost" onClick={() =>{
+                    <button type="submit" className="createPost" onClick={() =>{
                         submit();
                         //incProdNo();
                     }}>CREATE POST</button>
