@@ -93,7 +93,8 @@ import {Link } from "react-router-dom";
                  <span className="detail"> ACCOUNT NO : {userAccount.account_no}</span>
                  <span className="detail"> USER NAME  : {userAccount.user_name}</span>
                  <span className="detail"> PHONE      : {userAccount.phone}</span>
-                 <span className="detail"> ADDRESS   : {userAccount.address}</span>
+                 <span className="detail"> HOME ADDRESS   : {userAccount.address1}</span>
+                 <span className="detail"> ALT. ADDRESS   : {userAccount.address2}</span>
                  </div>
                  <ul>
                     

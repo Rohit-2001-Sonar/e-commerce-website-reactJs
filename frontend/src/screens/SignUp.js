@@ -13,7 +13,8 @@ function SignUp(){
     const [userName, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [phone, setPhone] = useState('');
-    const [address, setAddress] = useState('');
+    const [address1, setAddress1] = useState('');
+    const [address2, setAddress2] = useState('');
     const [dob, setDob] = useState('');
     const [gender, setGender] = useState('');
 
@@ -38,7 +39,7 @@ function SignUp(){
     //acc_no();
 
     const submit = () =>{
-        Axios.post('http://localhost:3001/api/signUp', {userName : userName, password: password, phone: phone, address: address, dob: dob, 
+        Axios.post('http://localhost:3001/api/signUp', {userName : userName, password: password, phone: phone, address1: address1,address2: address2, dob: dob, 
     gender: gender}).then((responce) => {
         //alert("SignUp Successfull");
         console.log(responce);
@@ -82,12 +83,21 @@ function SignUp(){
                 setPhone(e.target.value)
             }} required/>
             </div>
+
             <div className="form-group4">
-            <label>Address</label>
+            <label>Home Address</label>
             <input className="input" type="text" name="user_name" onChange={(e)=>{
-                setAddress(e.target.value)
+                setAddress1(e.target.value)
             }} required/>
             </div>
+
+            <div className="form-group8">
+            <label>Alternate Address</label>
+            <input className="input" type="text" name="user_name" onChange={(e)=>{
+                setAddress2(e.target.value)
+            }} required/>
+            </div>
+
 
             <div className="form-group5">
             <label>D.O.B</label>

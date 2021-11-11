@@ -30,7 +30,7 @@ const ratings = [
    ];
    
    // if path error change before /node_modules
-   const recommend = require('D:/react_apps/e-com/node_modules/collaborative-filter/lib/cf_api.js');
+   const recommend = require('C:/Users/navee/myreact/Ecommerce/e-commerce-website-reactJs/node_modules/collaborative-filter/lib/cf_api.js');
  
 const result = recommend.cFilter(ratings, 2);
    console.log("recommend = ",result);
@@ -155,6 +155,7 @@ app.get('/api/getBuyNowProd', (req, res)=>{
         console.log(result);
     });
 });
+
 
 //Get All Products
 app.get('/api/getAllProd', (req, res)=>{
@@ -289,13 +290,14 @@ app.post('/api/signUp',(req,res) =>{
     const userName = req.body.userName;
     const password = req.body.password;
     const phone = req.body.phone;
-    const address = req.body.address;
+    const addressone = req.body.address1;
+    const addresstwo = req.body.address2;
     const dob = req.body.dob;
     const gender = req.body.gender;
     
-    const sqlInsert = "INSERT INTO user_accounts(user_name, password, phone, address, dob, gender) VALUES (?,?,?,?,?,?);";
+    const sqlInsert = "INSERT INTO user_accounts(user_name, password, phone, address1,address2, dob, gender) VALUES (?,?,?,?,?,?,?);";
 
-    db.query(sqlInsert, [userName, password, phone, address, dob, gender], (err, result) =>{
+    db.query(sqlInsert, [userName, password, phone, addressone,addresstwo, dob, gender], (err, result) =>{
     
         if(err){
             console.log(err);

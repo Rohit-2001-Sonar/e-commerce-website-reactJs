@@ -8,12 +8,13 @@ import './ProductScreenStyle.css';
 function OrderPage(){
     const history = useHistory();
     const [products, setProduct] = useState([]);
-    const [address, setAddress] = useState('');
+    const [addres1, setaddressses1] = useState([]);
+    const [addres2, setaddressses2] = useState([]);
     const [quantity, setQuantity] = useState('');
     const [shipping, setShipping] = useState('');
     const [accountNo, setAccountno] = useState('');
     let status =0,product = [];
-
+    //let addres1 ,addres2 ;
     useEffect(() =>{
         let unmount = false;
         Axios.get('http://localhost:3001/api/status').then((responce) => {
@@ -21,7 +22,6 @@ function OrderPage(){
             //console.log(status);
             //console.log(responce.data[1]);
             //setAccountno(responce.data[1].userAcc[0].account_no);
-            //
             if(status!=1){
                 hisLogin();
             }
@@ -31,7 +31,8 @@ function OrderPage(){
                 //setUseraccount(responce.data[1].userAcc[0]);
                 //console.log(userAccount);
                 setAccountno(responce.data[1].userAcc[0].account_no);
-                setAddress(responce.data[1].userAcc[0].address);
+                setaddressses1(responce.data[1].userAcc[0].address1);
+                setaddressses2(responce.data[1].userAcc[0].address2);
                 //console.log(accountNo);
                 fetchData();
                 }
@@ -58,6 +59,9 @@ function OrderPage(){
           console.log(responce,responce.data[0].product_no, product.product_no, product.product_name);
         });
     };
+
+
+
 
     const checkQty = ()=>{
         if(quantity > products.quantity){
@@ -96,14 +100,31 @@ function OrderPage(){
                 <label className="subEntery">₹{products.product_price}</label>
                 </div>
 
-                <div className="entry">
-                <label className="subEntery">Shipping Address </label>
-                <input className="input"  type="text" name="shippingAddr" onChange={(e)=>{
-                setShipping(e.target.value);
-                
-            }} required />
-                </div>
 
+                <div className = "entry">
+                <label htmlform="subEntery" >Shipping Address</label>
+                <select className="shipadd" name="shipddress" onChange={(e)=>{
+                    if(e.target.value!="Other")
+                        setShipping(e.target.value);
+                }}>
+                    <option defaultValue="" ></option>
+                    <option value={addres1}>{addres1}</option>
+                    <option value={addres2}>{addres2}</option>
+                    <option value="Other">Enter now</option>
+                </select>
+                </div>
+                
+                <div className = "ship">
+                <div className = "shipsub">
+                <div className="entry1">
+                    <label className="subEntery">Shipping Address</label>
+                    <input className="input" type="text" name="shippingaddr" onChange={(e)=>{
+                        setShipping(e.target.value);
+                    }
+                    }required />
+                </div>
+                </div>
+                </div>
                 <div className="entry">
                 <label htmlform="quantity" >Quantity</label>
                         <input className="input" max={products.quantity}  type="number" name="quantity" onChange={(e)=>{

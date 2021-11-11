@@ -8,6 +8,7 @@ import SortedList from "./SortedList";
 import ShowAZ from "./ShowAZ";
 import SortedListlh from "./SortedListlh";
 import SortRating from "./SortRating";
+import OrderPage from "./OrderPage";
 
 function ProductList (props){
     const [products, setProduct] = useState([]);
@@ -23,9 +24,6 @@ function ProductList (props){
         history.push('/orderPage');
       };
 
-      const hisSortedList = () =>{
-        history.push('/home');
-      };
 
     useEffect(()=>{
       let unmount = false;
@@ -125,7 +123,7 @@ function ProductList (props){
             <Route exact path="/sortPricelh"><SortedListlh data={props.data}/></Route>
             <Route exact path="/sortPricehl"><SortedList data={props.data}/></Route>
             <Route exact path="/sortRating"><SortRating data={props.data}/></Route>
-            
+            <Route exact path="/orderpage" component={OrderPage}/>
             </BrowserRouter>
         </div>
     );
