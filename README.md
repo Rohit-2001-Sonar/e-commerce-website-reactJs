@@ -30,7 +30,7 @@ An e-commerce website built using ReactJS and NodeJS. E-commerce ( electronic co
 - All css files are used for styling the respective pages.
 
 ## Tools Required
-- VS Code 
+- Visula Studio Code 
 - ReactJs
 - NodeJs
-- Mysql
+- MySql
