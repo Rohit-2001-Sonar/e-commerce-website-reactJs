@@ -1,5 +1,5 @@
 #Ecommerce-Website
-An e-commerce website built using ReactJS and NodeJS. 
+An e-commerce website built using ReactJS and NodeJS. E-commerce ( electronic commerce ) is the buying and selling of goods and services of goods and services, or the transmitting of funds or data, over an electronic network , primarily the internet. These business transaction occur either as business-to-business(B2B) ,business-to-consumer (B2C), consumer-to-consumer or consumer-to-business.
 
 ##Back-end:
   #Server.js
@@ -17,13 +17,13 @@ An e-commerce website built using ReactJS and NodeJS.
   ###OrderPage.js
     -
   ###ProductList.js
-    -
+    - It displays the products uploaded by the seller. This page is available only for the seller.
   ###ProductScreen.js
     -
   ###ProductSold.js
     - It displays the amount of products a particular seller has sold. It displays the product details along with the quantity sold for each product. This page is only available       for the seller.
   ###Recommendation.js
-    -
+    - This is an analytical part where it suggests the best accessories or best related products for the product bought by the user.
   ###ShowAZ.js
     -
   ###SignUp.js
