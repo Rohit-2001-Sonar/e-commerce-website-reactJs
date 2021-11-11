@@ -27,6 +27,7 @@ An e-commerce website built using ReactJS and NodeJS. E-commerce ( electronic co
 - [WishList.js](https://github.com/vinothsubbiah/e-commerce-website-reactJs/blob/main/frontend/src/screens/WishList.js) - This page helps the user to add and collect all the items the user wants to purchase in the near future. 
 - [YourOrders.js](https://github.com/vinothsubbiah/e-commerce-website-reactJs/blob/main/frontend/src/screens/YourOrders.js) - The user's purchased products are displayed with the product's name, price, quantity and rating. 
 - [YourProduct.js](https://github.com/vinothsubbiah/e-commerce-website-reactJs/blob/main/frontend/src/screens/YourProduct.js) - Displays the products uploaded by the user. This page is only available for the seller.
+- All css files are used for styling the respective pages.
 
 ## Tools Required
 - VS Code 
