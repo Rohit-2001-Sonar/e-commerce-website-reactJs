@@ -6,7 +6,7 @@ An e-commerce website built using ReactJS and NodeJS. E-commerce ( electronic co
 
 
 ## Backend
-- [server.js]() - Here all the backend process happens which helps in implementing all included features. 
+- [server.js](https://github.com/vinothsubbiah/e-commerce-website-reactJs/blob/main/backend/server.js) - Here all the backend process happens which helps in implementing all included features. 
 
 ## Frontend
 - [BestSeller.js](https://github.com/vinothsubbiah/e-commerce-website-reactJs/blob/main/frontend/src/screens/BestSeller.js) - Displays the top 10 best selling products based on the number of quantity sold for each product and if there is a clash between two products then we are order them based on their ratings. 
