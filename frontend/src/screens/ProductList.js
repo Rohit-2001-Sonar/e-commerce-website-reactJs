@@ -24,9 +24,6 @@ function ProductList (props){
         history.push('/orderPage');
       };
 
-      const hisSortedList = () =>{
-        history.push('/home');
-      };
 
     useEffect(()=>{
       let unmount = false;

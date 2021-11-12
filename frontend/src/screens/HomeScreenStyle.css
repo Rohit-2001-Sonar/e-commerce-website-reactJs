@@ -85,6 +85,16 @@
   flex-direction: row;
 }
 
+.ship
+{
+  margin-right: 100px;
+}
+
+.shipsub
+{
+  margin-left: 5px;
+}
+
 .sorting-btn{
   margin-right: 1rem;
   background-color: aliceblue;

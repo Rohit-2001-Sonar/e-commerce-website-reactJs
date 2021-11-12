@@ -24,7 +24,6 @@ let status = 0, userAcc = [];
 
 //Cosine similarity
 
-
 //Best Seller
 app.post('/api/bestSeller', (req, res)=>{
     const categoryNo = req.body.categoryNo;
@@ -197,6 +196,7 @@ db.query("SELECT distinct buyer_account_no FROM ecommerce.purchased_history;",(e
     if(userIndex==-1){
         res.send([]);
     }
+    else{
     buyers = result1;
     console.log(buyers.size);
     let count = 0;
@@ -250,7 +250,7 @@ buyers.forEach(e => {
     });
     //console.log(rating);
 });
-
+    }
 });
 
     
@@ -291,6 +291,7 @@ app.get('/api/getBuyNowProd', (req, res)=>{
         console.log(result);
     });
 });
+
 
 //Get All Products
 app.get('/api/getAllProd', (req, res)=>{
@@ -425,13 +426,14 @@ app.post('/api/signUp',(req,res) =>{
     const userName = req.body.userName;
     const password = req.body.password;
     const phone = req.body.phone;
-    const address = req.body.address;
+    const addressone = req.body.address1;
+    const addresstwo = req.body.address2;
     const dob = req.body.dob;
     const gender = req.body.gender;
     
-    const sqlInsert = "INSERT INTO user_accounts(user_name, password, phone, address, dob, gender) VALUES (?,?,?,?,?,?);";
+    const sqlInsert = "INSERT INTO user_accounts(user_name, password, phone, address1,address2, dob, gender) VALUES (?,?,?,?,?,?,?);";
 
-    db.query(sqlInsert, [userName, password, phone, address, dob, gender], (err, result) =>{
+    db.query(sqlInsert, [userName, password, phone, addressone,addresstwo, dob, gender], (err, result) =>{
     
         if(err){
             console.log(err);
