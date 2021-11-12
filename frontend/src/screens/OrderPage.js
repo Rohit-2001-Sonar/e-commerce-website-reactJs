@@ -102,7 +102,7 @@ function OrderPage(){
 
 
                 <div className = "entry">
-                <label htmlform="subEntery" >Shipping Address</label>
+                <label htmlform="subEntery" >Shipping Choice</label>
                 <select className="shipadd" name="shipddress" onChange={(e)=>{
                     if(e.target.value!="Other")
                         setShipping(e.target.value);
@@ -118,7 +118,7 @@ function OrderPage(){
                 <div className = "shipsub">
                 <div className="entry1">
                     <label className="subEntery">Shipping Address</label>
-                    <input className="input" type="text" name="shippingaddr" onChange={(e)=>{
+                    <input className="input" type="text" name="shippingaddr" placeholder ="If given 'Enter Now', else ignore" onChange={(e)=>{
                         setShipping(e.target.value);
                     }
                     }required />
