@@ -203,7 +203,7 @@ db.query("SELECT distinct buyer_account_no FROM ecommerce.purchased_history;",(e
 buyers.forEach(e => {
     
     //console.log(buyers[i]);
-    db.query("SELECT *,avg(buyer_rating) as rating FROM ecommerce.purchased_history where purchased_history.buyer_account_no=? group by product_no;",[e.buyer_account_no],(err, result)=>{
+    db.query("SELECT *,avg(buyer_rating) as rating FROM ecommerce.purchased_history where purchased_history.buyer_account_no=? group by product_no order by product_no;",[e.buyer_account_no],(err, result)=>{
         console.log(result);
         count = count + 1;
         //console.log(i);
@@ -214,9 +214,11 @@ buyers.forEach(e => {
         let k=0;
         for(var j=0; j<totalProducts; j++){
             //console.log("k="+k);
-            if(typeof(result[k]) !=='undefined' && result[k].product_no == j+1){
+            if(typeof(result[k]) !='undefined' && result[k].product_no == j+1){
+                console.log("k="+k);
                 if(result[k].rating >2){
                     rate.push(1);
+                    console.log("high");
                 }
                 else{
                     rate.push(0);
@@ -225,6 +227,7 @@ buyers.forEach(e => {
             }
             else{
                 rate.push(0);
+                console.log("low"+typeof(result[k]));
             }
         }
         console.log(rate);
