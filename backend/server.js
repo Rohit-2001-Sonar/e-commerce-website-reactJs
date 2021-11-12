@@ -23,17 +23,7 @@ app.use(express.json());
 let status = 0, userAcc = [];
 
 //Cosine similarity
-const ratings = [
-    [1, 0, 0],
-    [1, 0, 0],
-    [1, 0, 0],
-   ];
-   
-   // if path error change before /node_modules
-   const recommend = require('D:/react_apps/e-com/node_modules/collaborative-filter/lib/cf_api.js');
- 
-const result = recommend.cFilter(ratings, 2);
-   console.log("recommend = ",result);
+
 
 //Best Seller
 app.post('/api/bestSeller', (req, res)=>{
@@ -101,6 +91,7 @@ app.post('/api/getWishList', (req,res)=>{
 });
 
 //Remove from wish
+
 app.post('/api/removeWish', (req,res)=>{
     const accountNo = req.body.accountNo;
     const productNo = req.body.productNo;
@@ -109,15 +100,160 @@ app.post('/api/removeWish', (req,res)=>{
     });
 });
 
+//
+//let ratings =[];
+
+const recommend = require('D:/react_apps/e-com/node_modules/collaborative-filter/lib/cf_api.js');
+
+let totalProducts, totalBuyers , buyers=[];
+let rating = [];
+db.query("SELECT count(distinct buyer_account_no) as count FROM ecommerce.purchased_history;",(err, result)=>{
+    console.log('totalBuyers'+result[0].count);
+    totalBuyers = result[0].count;
+});
+
+db.query("SELECT count(*) as count FROM ecommerce.products;",(err, result)=>{
+    console.log(result[0].count);
+    totalProducts = result[0].count;
+});
+
+db.query("SELECT distinct buyer_account_no FROM ecommerce.purchased_history;",(err, result1)=>{
+    
+    buyers = result1;
+    console.log(buyers.size);
+    let count = 0;
+buyers.forEach(e => {
+    
+    //console.log(buyers[i]);
+    db.query("SELECT *,avg(buyer_rating) as rating FROM ecommerce.purchased_history where purchased_history.buyer_account_no=? group by product_no;",[e.buyer_account_no],(err, result)=>{
+        console.log(result);
+        count = count + 1;
+        //console.log(i);
+        if(err){
+            console.log(err);
+            }
+        var rate = [];
+        let k=0;
+        for(var j=0; j<totalProducts; j++){
+            //console.log("k="+k);
+            if(typeof(result[k]) !=='undefined' && result[k].product_no == j+1){
+                if(result[k].rating >2){
+                    rate.push(1);
+                }
+                else{
+                    rate.push(0);
+                }
+                k = k+1;
+            }
+            else{
+                rate.push(0);
+            }
+        }
+        console.log(rate);
+        rating.push(rate);
+        console.log(rating);
+        if(count === totalBuyers){
+            console.log("reached end");
+            let finalResult = recommend.cFilter(rating, 2);
+   console.log("recommend = ",finalResult);
+        }
+    });
+    //console.log(rating);
+});
+
+});
+
+   // if path error change before /node_modules
+   /*const recommend = require('D:/react_apps/e-com/node_modules/collaborative-filter/lib/cf_api.js');
+ 
+const result = recommend.cFilter(ratings, 2);
+   console.log("recommend = ",result);*/
+
+
 //Get Recommend
 app.post('/api/getRecommend', (req, res)=>{
     const accountNo = req.body.accountNo;
-    db.query("SELECT * FROM ecommerce.products INNER JOIN (SELECT distinct products.subcategory_no as subcategory_no FROM ecommerce.wish_list inner join products on wish_list.product_no = products.product_no where wish_list.account_no=?) as sub on products.subcategory_no = sub.subcategory_no;",[accountNo], (err, result)=>{
-        res.send(result);
+    
+    let totalProducts, totalBuyers , buyers=[];
+let rating = [];
+db.query("SELECT count(distinct buyer_account_no) as count FROM ecommerce.purchased_history;",(err, result)=>{
+    console.log('totalBuyers'+result[0].count);
+    totalBuyers = result[0].count;
+});
+
+db.query("SELECT count(*) as count FROM ecommerce.products;",(err, result)=>{
+    console.log(result[0].count);
+    totalProducts = result[0].count;
+});
+
+db.query("SELECT distinct buyer_account_no FROM ecommerce.purchased_history;",(err, result1)=>{
+    let userIndex=-1, c=0;
+    result1.forEach(e => {
+        if(accountNo == e.buyer_account_no){
+            userIndex = c
+        }
+        c=c+1;
+    });
+    if(userIndex==-1){
+        res.send([]);
+    }
+    buyers = result1;
+    console.log(buyers.size);
+    let count = 0;
+buyers.forEach(e => {
+    
+    //console.log(buyers[i]);
+    db.query("SELECT *,avg(buyer_rating) as rating FROM ecommerce.purchased_history where purchased_history.buyer_account_no=? group by product_no;",[e.buyer_account_no],(err, result)=>{
+        console.log(result);
+        count = count + 1;
+        //console.log(i);
         if(err){
-        console.log(err);
+            console.log(err);
+            }
+        var rate = [];
+        let k=0;
+        for(var j=0; j<totalProducts; j++){
+            //console.log("k="+k);
+            if(typeof(result[k]) !=='undefined' && result[k].product_no == j+1){
+                if(result[k].rating >2){
+                    rate.push(1);
+                }
+                else{
+                    rate.push(0);
+                }
+                k = k+1;
+            }
+            else{
+                rate.push(0);
+            }
+        }
+        console.log(rate);
+        rating.push(rate);
+        console.log(rating);
+        if(count === totalBuyers){
+            console.log("reached end");
+            let finalResult = recommend.cFilter(rating, userIndex);
+   console.log("recommend == ",finalResult);
+            let prodArr=[];
+        db.query("SELECT * FROM ecommerce.products;", (err, result)=>{
+            result.forEach(e => {
+                for(var s=0; s<finalResult.length;s++){
+                if(e.product_no == finalResult[s]){
+                    prodArr.push(e);
+                }
+            }
+            });
+            res.send(prodArr);
+            console.log(prodArr);
+        });
         }
     });
+    //console.log(rating);
+});
+
+});
+
+    
 });
 
 //Get Your Orders

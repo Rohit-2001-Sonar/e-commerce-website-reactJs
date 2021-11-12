@@ -8,7 +8,7 @@ import './ProductScreenStyle.css';
 function OrderPage(){
     const history = useHistory();
     const [products, setProduct] = useState([]);
-    const [address, setAddress] = useState('');
+    const [address, setAddress] = useState([]);
     const [quantity, setQuantity] = useState('');
     const [shipping, setShipping] = useState('');
     const [accountNo, setAccountno] = useState('');
@@ -32,7 +32,9 @@ function OrderPage(){
                 //console.log(userAccount);
                 setAccountno(responce.data[1].userAcc[0].account_no);
                 setAddress(responce.data[1].userAcc[0].address);
-                //console.log(accountNo);
+                //address = responce.data[1].userAcc[0].address;
+                console.log(responce.data[1].userAcc[0]);
+                console.log(address);
                 fetchData();
                 }
             }

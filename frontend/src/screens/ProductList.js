@@ -8,6 +8,7 @@ import SortedList from "./SortedList";
 import ShowAZ from "./ShowAZ";
 import SortedListlh from "./SortedListlh";
 import SortRating from "./SortRating";
+import OrderPage from "./OrderPage";
 
 function ProductList (props){
     const [products, setProduct] = useState([]);
@@ -125,6 +126,7 @@ function ProductList (props){
             <Route exact path="/sortPricelh"><SortedListlh data={props.data}/></Route>
             <Route exact path="/sortPricehl"><SortedList data={props.data}/></Route>
             <Route exact path="/sortRating"><SortRating data={props.data}/></Route>
+            <Route exact path="/orderPage" component={OrderPage}/>
             
             </BrowserRouter>
         </div>
